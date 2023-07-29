@@ -1,1 +1,1 @@
-# sdk_golang
+# Kamoney API2 SDK
