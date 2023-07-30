@@ -10,7 +10,7 @@ import (
 )
 
 // public/recovery/confirm
-func (s *sdk) RecoveryConfirm(in kamoney_sdk_dtos.RecoveryConfirmRequestParams) (out kamoney_sdk_dtos.RecoveryConfirmRequestResponse, err error) {
+func (s *sdk) AccountRecoveryConfirm(in kamoney_sdk_dtos.AccountRecoveryConfirmRequestParams) (out kamoney_sdk_dtos.AccountRecoveryConfirmRequestResponse, err error) {
 	req, err := s.requestHandler.RequestHandler("POST", ENDPOINT_ACCOUNT_RECOVERY_CONFIRM, in)
 	if err != nil {
 		log.Panicln("Recovery 01: ", err.Error())

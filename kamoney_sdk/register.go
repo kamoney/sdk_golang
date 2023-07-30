@@ -10,7 +10,7 @@ import (
 )
 
 // public/register
-func (s *sdk) Register(in kamoney_sdk_dtos.RegisterRequestParams) (out kamoney_sdk_dtos.RegisterRequestResponse, err error) {
+func (s *sdk) AccountRegister(in kamoney_sdk_dtos.AccountRegisterRequestParams) (out kamoney_sdk_dtos.AccountRegisterRequestResponse, err error) {
 	req, err := s.requestHandler.RequestHandler("POST", ENDPOINT_ACCOUNT_REGISTER, in)
 	if err != nil {
 		log.Panicln("Register 01: ", err.Error())

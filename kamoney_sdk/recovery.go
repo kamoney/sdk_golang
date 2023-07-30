@@ -10,7 +10,7 @@ import (
 )
 
 // public/recovery
-func (s *sdk) Recovery(in kamoney_sdk_dtos.RecoveryRequestParams) (out kamoney_sdk_dtos.RecoveryRequestResponse, err error) {
+func (s *sdk) AccountRecovery(in kamoney_sdk_dtos.AccountRecoveryRequestParams) (out kamoney_sdk_dtos.AccountRecoveryRequestResponse, err error) {
 	req, err := s.requestHandler.RequestHandler("POST", ENDPOINT_ACCOUNT_RECOVERY, in)
 	if err != nil {
 		log.Panicln("Recovery 01: ", err.Error())
