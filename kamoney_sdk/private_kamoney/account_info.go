@@ -1,4 +1,4 @@
-package private
+package private_kamoney
 
 func (s *privateRequests) AccountInfo() (in struct{}, out struct{}) {
 	// req, err := s.r.RequestHandler("POST", ENDPOINT_ACCOUNT_ACTIVE, in)

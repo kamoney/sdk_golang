@@ -1,8 +1,12 @@
-package public_kamoney
+package private_kamoney
 
 import (
 	"bytes"
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
+	"hash"
 	"log"
 	"net/http"
 )
@@ -14,6 +18,15 @@ var (
 type RequestHandler struct {
 	PublicKey string
 	SecretKey string
+}
+
+func (r *RequestHandler) SignRequest(req *http.Request) {
+	var sig hash.Hash
+
+	sig = hmac.New(sha256.New, []byte(r.SecretKey))
+	sig.Write([]byte(req.URL.RawQuery))
+
+	req.Header.Add("sign", hex.EncodeToString(sig.Sum(nil)))
 }
 
 func (r *RequestHandler) RequestHandler(method string, endpoint string, requestBody any) (*http.Request, error) {

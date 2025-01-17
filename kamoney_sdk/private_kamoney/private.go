@@ -1,6 +1,4 @@
-package private
-
-import "github.com/kamoney/sdk_golang/kamoney_sdk/request"
+package private_kamoney
 
 type PrivateRequestsInterface interface {
 	AccountInfo() (struct{}, struct{})
@@ -11,10 +9,10 @@ type privateRequests struct {
 	Password  string
 	PublicKey string
 	SecretKey string
-	r         *request.RequestHandler
+	r         *RequestHandler
 }
 
-func NewPrivateRequests(email, password, publicKey, secretKey string, r *request.RequestHandler) PrivateRequestsInterface {
+func NewPrivateRequests(email, password, publicKey, secretKey string, r *RequestHandler) PrivateRequestsInterface {
 	return &privateRequests{
 		Email:     email,
 		Password:  password,
