@@ -1,4 +1,4 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"encoding/json"
@@ -10,8 +10,8 @@ import (
 )
 
 // public/register
-func (s *sdk) AccountRegister(in kamoney_sdk_dtos.AccountRegisterRequestParams) (out kamoney_sdk_dtos.AccountRegisterRequestResponse, err error) {
-	req, err := s.requestHandler.RequestHandler("POST", ENDPOINT_ACCOUNT_REGISTER, in)
+func (s *publicRequests) AccountRegister(in kamoney_sdk_dtos.AccountRegisterRequestParams) (out kamoney_sdk_dtos.AccountRegisterRequestResponse, err error) {
+	req, err := s.r.RequestHandler("POST", ENDPOINT_ACCOUNT_REGISTER, in)
 	if err != nil {
 		log.Panicln("Register 01: ", err.Error())
 		return

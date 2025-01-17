@@ -1,4 +1,4 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"encoding/json"
@@ -10,8 +10,8 @@ import (
 )
 
 // public/recovery
-func (s *sdk) AccountRecovery(in kamoney_sdk_dtos.AccountRecoveryRequestParams) (out kamoney_sdk_dtos.AccountRecoveryRequestResponse, err error) {
-	req, err := s.requestHandler.RequestHandler("POST", ENDPOINT_ACCOUNT_RECOVERY, in)
+func (s *publicRequests) AccountRecovery(in kamoney_sdk_dtos.AccountRecoveryRequestParams) (out kamoney_sdk_dtos.AccountRecoveryRequestResponse, err error) {
+	req, err := s.r.RequestHandler("POST", ENDPOINT_ACCOUNT_RECOVERY, in)
 	if err != nil {
 		log.Panicln("Recovery 01: ", err.Error())
 		return

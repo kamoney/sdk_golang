@@ -7,20 +7,20 @@ import (
 	"testing"
 
 	"github.com/joho/godotenv"
-	"github.com/kamoney/sdk_golang/kamoney_sdk"
+	"github.com/kamoney/sdk_golang/kamoney_sdk/public_kamoney"
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
 )
 
-var sdk kamoney_sdk.SDK
+var public public_kamoney.PublicRequestsInterface
 
 func TestMain(m *testing.M) {
-	err := godotenv.Load(`../.env`)
+	err := godotenv.Load(`.env`)
 
 	if err != nil {
 		log.Fatal(".env file is missing")
 	}
 
-	sdk = kamoney_sdk.NewSDKClient(os.Getenv("EMAIL"), os.Getenv("PASS"), os.Getenv("PUBLIC"), os.Getenv("SECRET"))
+	public = public_kamoney.NewPublicRequests(os.Getenv("EMAIL"), os.Getenv("PASS"), os.Getenv("PUBLIC"), os.Getenv("SECRET"))
 
 	code := m.Run()
 
@@ -30,7 +30,7 @@ func TestMain(m *testing.M) {
 }
 
 func TestServicesOrder(t *testing.T) {
-	response, err := sdk.ServicesOrder()
+	response, err := public.ServicesOrder()
 	if err != nil {
 		panic(err)
 	}
@@ -39,7 +39,7 @@ func TestServicesOrder(t *testing.T) {
 }
 
 func TestServicesMerchant(t *testing.T) {
-	response, err := sdk.ServicesMerchant()
+	response, err := public.ServicesMerchant()
 	if err != nil {
 		panic(err)
 	}
@@ -48,7 +48,7 @@ func TestServicesMerchant(t *testing.T) {
 }
 
 func TestServicesBuy(t *testing.T) {
-	response, err := sdk.ServicesBuy()
+	response, err := public.ServicesBuy()
 	if err != nil {
 		panic(err)
 	}
@@ -57,7 +57,7 @@ func TestServicesBuy(t *testing.T) {
 }
 
 func TestAccountRegister(t *testing.T) {
-	response, err := sdk.AccountRegister(kamoney_sdk_dtos.AccountRegisterRequestParams{
+	response, err := public.AccountRegister(kamoney_sdk_dtos.AccountRegisterRequestParams{
 		Email:         "immortal.g.tv@gmail.com",
 		AffiliateCode: "QGHZ0RYU5R",
 		Terms:         true,
@@ -70,7 +70,7 @@ func TestAccountRegister(t *testing.T) {
 }
 
 func TestAccountActive(t *testing.T) {
-	response, err := sdk.AccountActive(kamoney_sdk_dtos.AccountActiveRequestParams{
+	response, err := public.AccountActive(kamoney_sdk_dtos.AccountActiveRequestParams{
 		Email:    "immortal.g.tv@gmail.com",
 		Code:     324340,
 		Password: "m1nh@s3nh@n0v@",
@@ -83,7 +83,7 @@ func TestAccountActive(t *testing.T) {
 }
 
 func TestAccountRecovery(t *testing.T) {
-	response, err := sdk.AccountRecovery(kamoney_sdk_dtos.AccountRecoveryRequestParams{
+	response, err := public.AccountRecovery(kamoney_sdk_dtos.AccountRecoveryRequestParams{
 		Email: "immortal.g.tv@gmail.com",
 	})
 	if err != nil {
@@ -94,7 +94,7 @@ func TestAccountRecovery(t *testing.T) {
 }
 
 func TestAccountRecoveryConfirm(t *testing.T) {
-	response, err := sdk.AccountRecoveryConfirm(kamoney_sdk_dtos.AccountRecoveryConfirmRequestParams{
+	response, err := public.AccountRecoveryConfirm(kamoney_sdk_dtos.AccountRecoveryConfirmRequestParams{
 		Email:    "immortal.g.tv@gmail.com",
 		Code:     324340,
 		Password: "m1nh@s3nh@n0v@",
@@ -107,7 +107,7 @@ func TestAccountRecoveryConfirm(t *testing.T) {
 }
 
 func TestUtilsBanks(t *testing.T) {
-	response, err := sdk.UtilsBanks()
+	response, err := public.UtilsBanks()
 	if err != nil {
 		panic(err)
 	}
@@ -116,7 +116,7 @@ func TestUtilsBanks(t *testing.T) {
 }
 
 func TestUtilsNotification(t *testing.T) {
-	response, err := sdk.UtilsNotification()
+	response, err := public.UtilsNotification()
 	if err != nil {
 		panic(err)
 	}
@@ -125,7 +125,7 @@ func TestUtilsNotification(t *testing.T) {
 }
 
 func TestUtilsCountry(t *testing.T) {
-	response, err := sdk.UtilsCountry()
+	response, err := public.UtilsCountry()
 	if err != nil {
 		panic(err)
 	}
@@ -134,7 +134,7 @@ func TestUtilsCountry(t *testing.T) {
 }
 
 func TestUtilsState(t *testing.T) {
-	response, err := sdk.UtilsState(1)
+	response, err := public.UtilsState(1)
 	if err != nil {
 		panic(err)
 	}
@@ -143,7 +143,7 @@ func TestUtilsState(t *testing.T) {
 }
 
 func TestUtilsCity(t *testing.T) {
-	response, err := sdk.UtilsCity(1, 1)
+	response, err := public.UtilsCity(1, 1)
 	if err != nil {
 		panic(err)
 	}
@@ -152,7 +152,7 @@ func TestUtilsCity(t *testing.T) {
 }
 
 func TestUtilsCurrency(t *testing.T) {
-	response, err := sdk.UtilsCurrency()
+	response, err := public.UtilsCurrency()
 	if err != nil {
 		panic(err)
 	}
@@ -161,7 +161,7 @@ func TestUtilsCurrency(t *testing.T) {
 }
 
 func TestUtilsCurrencyNetwork(t *testing.T) {
-	response, err := sdk.UtilsCurrencyNetwork("")
+	response, err := public.UtilsCurrencyNetwork("")
 	if err != nil {
 		panic(err)
 	}
@@ -170,7 +170,7 @@ func TestUtilsCurrencyNetwork(t *testing.T) {
 }
 
 func TestUtilsFaq(t *testing.T) {
-	_, err := sdk.UtilsFaq()
+	_, err := public.UtilsFaq()
 	if err != nil {
 		panic(err)
 	}
@@ -179,7 +179,7 @@ func TestUtilsFaq(t *testing.T) {
 }
 
 func TestUtilsProduct(t *testing.T) {
-	response, err := sdk.UtilsProduct()
+	response, err := public.UtilsProduct()
 	if err != nil {
 		panic(err)
 	}
@@ -188,7 +188,7 @@ func TestUtilsProduct(t *testing.T) {
 }
 
 func TestUtilsContact(t *testing.T) {
-	response, err := sdk.UtilsContact(kamoney_sdk_dtos.UtilsContactRequestParams{
+	response, err := public.UtilsContact(kamoney_sdk_dtos.UtilsContactRequestParams{
 		Name:    "Igor",
 		Email:   "immortal.g.tv@gmail.com",
 		Subject: "Test API",
@@ -202,7 +202,7 @@ func TestUtilsContact(t *testing.T) {
 }
 
 func TestUtilsPixType(t *testing.T) {
-	response, err := sdk.UtilsPixType()
+	response, err := public.UtilsPixType()
 	if err != nil {
 		panic(err)
 	}

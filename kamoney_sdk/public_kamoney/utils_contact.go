@@ -1,4 +1,4 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"encoding/json"
@@ -10,8 +10,8 @@ import (
 )
 
 // public/contact
-func (s *sdk) UtilsContact(in kamoney_sdk_dtos.UtilsContactRequestParams) (out kamoney_sdk_dtos.UtilsContactRequestResponse, err error) {
-	req, err := s.requestHandler.RequestHandler("POST", ENDPOINT_UTILS_CONTACT, in)
+func (s *publicRequests) UtilsContact(in kamoney_sdk_dtos.UtilsContactRequestParams) (out kamoney_sdk_dtos.UtilsContactRequestResponse, err error) {
+	req, err := s.r.RequestHandler("POST", ENDPOINT_UTILS_CONTACT, in)
 	if err != nil {
 		log.Panicln("UtilsContact 01: ", err.Error())
 		return

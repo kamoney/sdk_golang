@@ -1,4 +1,4 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"encoding/json"
@@ -10,8 +10,8 @@ import (
 )
 
 // Unecessary endpoint.
-func (s *sdk) Auth(in kamoney_sdk_dtos.AuthRequestParams) (out kamoney_sdk_dtos.AuthRequestResponse, err error) {
-	req, err := s.requestHandler.RequestHandler("POST", ENDPOINT_AUTH, in)
+func (s *publicRequests) Auth(in kamoney_sdk_dtos.AuthRequestParams) (out kamoney_sdk_dtos.AuthRequestResponse, err error) {
+	req, err := s.r.RequestHandler("POST", ENDPOINT_AUTH, in)
 	if err != nil {
 		log.Panicln("A 01: ", err.Error())
 		return

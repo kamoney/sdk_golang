@@ -1,4 +1,4 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"encoding/json"
@@ -9,31 +9,31 @@ import (
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
 )
 
-// public/country
-func (s *sdk) UtilsCountry() (out kamoney_sdk_dtos.UtilsCountryRequestResponse, err error) {
-	req, err := s.requestHandler.RequestHandler("GET", ENDPOINT_UTILS_COUNTRY, nil)
+// public/currency
+func (s *publicRequests) UtilsCurrency() (out kamoney_sdk_dtos.UtilsCurrencyRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_UTILS_CURRENCY, nil)
 	if err != nil {
-		log.Panicln("UtilsCountry 01: ", err.Error())
+		log.Panicln("Currency 01: ", err.Error())
 		return
 	}
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Panicln("UtilsCountry 02: ", err.Error())
+		log.Panicln("Currency 02: ", err.Error())
 		return
 	}
 	defer resp.Body.Close()
 
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Panicln("UtilsCountry 03: ", err.Error())
+		log.Panicln("Currency 03: ", err.Error())
 		return
 	}
 
 	err = json.Unmarshal(bodyBytes, &out)
 	if err != nil {
-		log.Println("UtilsCountry 04: ", err.Error())
+		log.Println("Currency 04: ", err.Error())
 		return
 	}
 

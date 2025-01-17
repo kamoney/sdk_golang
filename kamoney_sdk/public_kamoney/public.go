@@ -1,9 +1,8 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"fmt"
 
-	"github.com/kamoney/sdk_golang/kamoney_sdk/request"
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
 )
 
@@ -36,15 +35,8 @@ var (
 	ENDPOINT_UTILS_PIX_TYPE = "public/pixtype"
 )
 
-type sdk struct {
-	email          string
-	password       string
-	publicKey      string
-	secretKey      string
-	requestHandler *request.RequestHandler
-}
-
-type SDK interface {
+type PublicRequestsInterface interface {
+	// PUBLIC
 	// Auth(kamoney_sdk_dtos.AuthRequestParams) (kamoney_sdk_dtos.AuthRequestResponse, error)
 	ServicesOrder() (kamoney_sdk_dtos.ServicesOrderRequestResponse, error)
 	ServicesMerchant() (kamoney_sdk_dtos.ServicesMerchantRequestResponse, error)
@@ -68,15 +60,25 @@ type SDK interface {
 	UtilsPixType() (kamoney_sdk_dtos.UtilsPixTypeRequestResponse, error)
 }
 
-func NewSDKClient(email, password, publicKey, secretKey string) SDK {
-	r := request.RequestHandler{
+type publicRequests struct {
+	Email     string
+	Password  string
+	PublicKey string
+	SecretKey string
+	r         *RequestHandler
+}
+
+func NewPublicRequests(email, password, publicKey, secretKey string) PublicRequestsInterface {
+	r := RequestHandler{
 		PublicKey: publicKey,
 		SecretKey: secretKey,
 	}
 
-	return &sdk{
-		email:          email,
-		password:       password,
-		requestHandler: &r,
+	return &publicRequests{
+		Email:     email,
+		Password:  password,
+		PublicKey: publicKey,
+		SecretKey: secretKey,
+		r:         &r,
 	}
 }

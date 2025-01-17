@@ -1,4 +1,4 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"encoding/json"
@@ -10,8 +10,8 @@ import (
 )
 
 // public/recovery/confirm
-func (s *sdk) AccountRecoveryConfirm(in kamoney_sdk_dtos.AccountRecoveryConfirmRequestParams) (out kamoney_sdk_dtos.AccountRecoveryConfirmRequestResponse, err error) {
-	req, err := s.requestHandler.RequestHandler("POST", ENDPOINT_ACCOUNT_RECOVERY_CONFIRM, in)
+func (s *publicRequests) AccountRecoveryConfirm(in kamoney_sdk_dtos.AccountRecoveryConfirmRequestParams) (out kamoney_sdk_dtos.AccountRecoveryConfirmRequestResponse, err error) {
+	req, err := s.r.RequestHandler("POST", ENDPOINT_ACCOUNT_RECOVERY_CONFIRM, in)
 	if err != nil {
 		log.Panicln("Recovery 01: ", err.Error())
 		return

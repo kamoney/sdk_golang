@@ -1,4 +1,4 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"encoding/json"
@@ -10,8 +10,8 @@ import (
 )
 
 // public/services/buy
-func (s *sdk) ServicesBuy() (out kamoney_sdk_dtos.ServicesBuyRequestResponse, err error) {
-	req, err := s.requestHandler.RequestHandler("GET", ENDPOINT_SERVICES_BUY, nil)
+func (s *publicRequests) ServicesBuy() (out kamoney_sdk_dtos.ServicesBuyRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_SERVICES_BUY, nil)
 	if err != nil {
 		log.Panicln("ServicesBuy 01: ", err.Error())
 		return

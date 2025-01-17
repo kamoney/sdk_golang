@@ -1,4 +1,4 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"encoding/json"
@@ -10,8 +10,8 @@ import (
 )
 
 // public/active
-func (s *sdk) AccountActive(in kamoney_sdk_dtos.AccountActiveRequestParams) (out kamoney_sdk_dtos.AccountActiveRequestResponse, err error) {
-	req, err := s.requestHandler.RequestHandler("POST", ENDPOINT_ACCOUNT_ACTIVE, in)
+func (s *publicRequests) AccountActive(in kamoney_sdk_dtos.AccountActiveRequestParams) (out kamoney_sdk_dtos.AccountActiveRequestResponse, err error) {
+	req, err := s.r.RequestHandler("POST", ENDPOINT_ACCOUNT_ACTIVE, in)
 	if err != nil {
 		log.Panicln("Active 01: ", err.Error())
 		return

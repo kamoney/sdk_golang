@@ -1,4 +1,4 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"encoding/json"
@@ -10,8 +10,8 @@ import (
 )
 
 // public/pixtype
-func (s *sdk) UtilsPixType() (out kamoney_sdk_dtos.UtilsPixTypeRequestResponse, err error) {
-	req, err := s.requestHandler.RequestHandler("GET", ENDPOINT_UTILS_PIX_TYPE, nil)
+func (s *publicRequests) UtilsPixType() (out kamoney_sdk_dtos.UtilsPixTypeRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_UTILS_PIX_TYPE, nil)
 	if err != nil {
 		log.Panicln("UtilsPixType 01: ", err.Error())
 		return

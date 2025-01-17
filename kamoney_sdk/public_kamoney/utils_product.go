@@ -1,4 +1,4 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"encoding/json"
@@ -9,31 +9,31 @@ import (
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
 )
 
-// public/banks
-func (s *sdk) UtilsBanks() (out kamoney_sdk_dtos.UtilsBankRequestResponse, err error) {
-	req, err := s.requestHandler.RequestHandler("GET", ENDPOINT_UTILS_BANK, nil)
+// public/product
+func (s *publicRequests) UtilsProduct() (out kamoney_sdk_dtos.UtilsProductRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_UTILS_PRODUCT, nil)
 	if err != nil {
-		log.Panicln("UtilsBanks 01: ", err.Error())
+		log.Panicln("UtilsProduct 01: ", err.Error())
 		return
 	}
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Panicln("UtilsBanks 02: ", err.Error())
+		log.Panicln("UtilsProduct 02: ", err.Error())
 		return
 	}
 	defer resp.Body.Close()
 
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Panicln("UtilsBanks 03: ", err.Error())
+		log.Panicln("UtilsProduct 03: ", err.Error())
 		return
 	}
 
 	err = json.Unmarshal(bodyBytes, &out)
 	if err != nil {
-		log.Println("UtilsBanks 04: ", err.Error())
+		log.Println("UtilsProduct 04: ", err.Error())
 		return
 	}
 

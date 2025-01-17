@@ -1,4 +1,4 @@
-package request
+package public_kamoney
 
 import (
 	"bytes"

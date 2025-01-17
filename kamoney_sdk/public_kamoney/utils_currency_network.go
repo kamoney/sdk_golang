@@ -1,4 +1,4 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"encoding/json"
@@ -10,8 +10,8 @@ import (
 )
 
 // public/currency/{asset}
-func (s *sdk) UtilsCurrencyNetwork(asset string) (out kamoney_sdk_dtos.UtilsCurrencyNetworkRequestResponse, err error) {
-	req, err := s.requestHandler.RequestHandler("GET", ENDPOINT_UTILS_CURRENCY_NETWORK(asset), nil)
+func (s *publicRequests) UtilsCurrencyNetwork(asset string) (out kamoney_sdk_dtos.UtilsCurrencyNetworkRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_UTILS_CURRENCY_NETWORK(asset), nil)
 	if err != nil {
 		log.Panicln("UtilsCity 01: ", err.Error())
 		return

@@ -1,4 +1,4 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"encoding/json"
@@ -10,8 +10,8 @@ import (
 )
 
 // public/notification
-func (s *sdk) UtilsNotification() (out kamoney_sdk_dtos.UtilsNotificationRequestResponse, err error) {
-	req, err := s.requestHandler.RequestHandler("GET", ENDPOINT_UTILS_NOTIFICATION, nil)
+func (s *publicRequests) UtilsNotification() (out kamoney_sdk_dtos.UtilsNotificationRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_UTILS_NOTIFICATION, nil)
 	if err != nil {
 		log.Panicln("UtilsNotification 01: ", err.Error())
 		return

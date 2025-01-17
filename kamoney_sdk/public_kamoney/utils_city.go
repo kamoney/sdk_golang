@@ -1,4 +1,4 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"encoding/json"
@@ -10,8 +10,8 @@ import (
 )
 
 // public/country/{country_id}/state/{state_id}/city
-func (s *sdk) UtilsCity(country_id, state_id int64) (out kamoney_sdk_dtos.UtilsCityRequestResponse, err error) {
-	req, err := s.requestHandler.RequestHandler("GET", ENDPOINT_UTILS_COUNTRY_CITY(country_id, state_id), nil)
+func (s *publicRequests) UtilsCity(country_id, state_id int64) (out kamoney_sdk_dtos.UtilsCityRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_UTILS_COUNTRY_CITY(country_id, state_id), nil)
 	if err != nil {
 		log.Panicln("UtilsCity 01: ", err.Error())
 		return

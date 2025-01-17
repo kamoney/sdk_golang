@@ -1,4 +1,4 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"encoding/json"
@@ -11,8 +11,8 @@ import (
 )
 
 // public/faq
-func (s *sdk) UtilsFaq() (out kamoney_sdk_dtos.UtilsFaqRequestResponse, err error) {
-	req, err := s.requestHandler.RequestHandler("GET", ENDPOINT_UTILS_BANK, nil)
+func (s *publicRequests) UtilsFaq() (out kamoney_sdk_dtos.UtilsFaqRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_UTILS_BANK, nil)
 	if err != nil {
 		log.Panicln("UtilsFaq 01: ", err.Error())
 		return

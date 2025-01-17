@@ -1,4 +1,4 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"encoding/json"
@@ -10,8 +10,8 @@ import (
 )
 
 // public/services/order
-func (s *sdk) ServicesOrder() (out kamoney_sdk_dtos.ServicesOrderRequestResponse, err error) {
-	req, err := s.requestHandler.RequestHandler("GET", ENDPOINT_SERVICES_ORDER, nil)
+func (s *publicRequests) ServicesOrder() (out kamoney_sdk_dtos.ServicesOrderRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_SERVICES_ORDER, nil)
 	if err != nil {
 		log.Panicln("ServicesOrder 01: ", err.Error())
 		return

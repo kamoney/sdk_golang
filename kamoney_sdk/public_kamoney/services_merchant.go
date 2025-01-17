@@ -1,4 +1,4 @@
-package kamoney_sdk
+package public_kamoney
 
 import (
 	"encoding/json"
@@ -10,8 +10,8 @@ import (
 )
 
 // public/services/merchant
-func (s *sdk) ServicesMerchant() (out kamoney_sdk_dtos.ServicesMerchantRequestResponse, err error) {
-	req, err := s.requestHandler.RequestHandler("GET", ENDPOINT_SERVICES_MERCHANT, nil)
+func (s *publicRequests) ServicesMerchant() (out kamoney_sdk_dtos.ServicesMerchantRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_SERVICES_MERCHANT, nil)
 	if err != nil {
 		log.Panicln("ServicesMerchant 01: ", err.Error())
 		return
