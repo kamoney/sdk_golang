@@ -2,6 +2,7 @@ package kamoney_sdk
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -30,6 +31,14 @@ func (s *sdk) UtilsFaq() (out kamoney_sdk_dtos.UtilsFaqRequestResponse, err erro
 		log.Panicln("UtilsFaq 03: ", err.Error())
 		return
 	}
+
+	var test interface{}
+	err = json.Unmarshal(bodyBytes, &test)
+	if err != nil {
+		log.Println("UtilsFaq 04: ", err.Error())
+		return
+	}
+	fmt.Println(test)
 
 	err = json.Unmarshal(bodyBytes, &out)
 	if err != nil {
