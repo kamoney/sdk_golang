@@ -14,7 +14,7 @@ import (
 var sdk kamoney_sdk.SDK
 
 func TestMain(m *testing.M) {
-	err := godotenv.Load(`C:\Users\immor\OneDrive\Documentos\traderBot\.env`)
+	err := godotenv.Load(`../.env`)
 
 	if err != nil {
 		log.Fatal(".env file is missing")
