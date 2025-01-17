@@ -9,8 +9,9 @@ import (
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
 )
 
-func (s *privateRequests) AccountInfo(in kamoney_sdk_dtos.AccountInfoRequestParams) (out kamoney_sdk_dtos.AccountInfoRequestResponse, err error) {
-	req, err := s.r.RequestHandler("POST", ENDPOINT_ACCOUNT_INFO, in)
+// account/locality
+func (s *privateRequests) AccountLocality(in kamoney_sdk_dtos.AccountLocalityRequestParams) (out kamoney_sdk_dtos.AccountLocalityRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_ACCOUNT_INFO, in)
 	if err != nil {
 		log.Panicln("Active 01: ", err.Error())
 		return
@@ -18,13 +19,6 @@ func (s *privateRequests) AccountInfo(in kamoney_sdk_dtos.AccountInfoRequestPara
 
 	client := &http.Client{}
 
-	queryStr := s.gerQueryString(req.URL.Query(), map[string]string{
-		"name":          in.Name,
-		"personal_id":   in.PersonalID,
-		"date_of_birth": in.DateOfBirth,
-	})
-
-	req.URL.RawQuery = queryStr
 	s.r.signRequest(req)
 
 	resp, err := client.Do(req)

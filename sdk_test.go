@@ -7,11 +7,13 @@ import (
 	"testing"
 
 	"github.com/joho/godotenv"
+	"github.com/kamoney/sdk_golang/kamoney_sdk/private_kamoney"
 	"github.com/kamoney/sdk_golang/kamoney_sdk/public_kamoney"
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
 )
 
 var public public_kamoney.PublicRequestsInterface
+var private private_kamoney.PrivateRequestsInterface
 
 func TestMain(m *testing.M) {
 	err := godotenv.Load(`.env`)
@@ -21,6 +23,7 @@ func TestMain(m *testing.M) {
 	}
 
 	public = public_kamoney.NewPublicRequests(os.Getenv("EMAIL"), os.Getenv("PASS"), os.Getenv("PUBLIC"), os.Getenv("SECRET"))
+	private = private_kamoney.NewPrivateRequests(os.Getenv("EMAIL"), os.Getenv("PASS"), os.Getenv("PUBLIC"), os.Getenv("SECRET"))
 
 	code := m.Run()
 

@@ -9,6 +9,7 @@ import (
 	"hash"
 	"log"
 	"net/http"
+	"net/url"
 )
 
 var (
@@ -20,7 +21,16 @@ type RequestHandler struct {
 	SecretKey string
 }
 
-func (r *RequestHandler) SignRequest(req *http.Request) {
+func (s *privateRequests) gerQueryString(q url.Values, values map[string]string) (queryStr string) {
+	for k, v := range values {
+		q.Add(k, v)
+	}
+
+	queryStr = q.Encode()
+	return
+}
+
+func (r *RequestHandler) signRequest(req *http.Request) {
 	var sig hash.Hash
 
 	sig = hmac.New(sha256.New, []byte(r.SecretKey))
