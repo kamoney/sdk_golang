@@ -12,7 +12,7 @@ import (
 
 // public/faq
 func (s *publicRequests) UtilsFaq() (out kamoney_sdk_dtos.UtilsFaqRequestResponse, err error) {
-	req, err := s.r.RequestHandler("GET", ENDPOINT_UTILS_BANK, nil)
+	req, err := s.r.RequestHandler("GET", ENDPOINT_UTILS_FAQ, nil)
 	if err != nil {
 		log.Panicln("UtilsFaq 01: ", err.Error())
 		return
