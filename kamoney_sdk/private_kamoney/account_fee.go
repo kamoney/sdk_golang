@@ -14,7 +14,7 @@ import (
 func (s *privateRequests) GetFee(in kamoney_sdk_dtos.GetFeeRequestParams) (out kamoney_sdk_dtos.GetFeeRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
 
-	req, err := s.r.RequestHandler("GET", ENDPOINT_SERVICES_FEE, in)
+	req, err := s.r.RequestHandler("GET", ENDPOINT_ACCOUNT_FEE, in)
 	if err != nil {
 		log.Panicln("GSLB 01: ", err.Error())
 		return

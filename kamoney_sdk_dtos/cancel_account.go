@@ -2,7 +2,7 @@ package kamoney_sdk_dtos
 
 type CancelAccountRequestParams struct {
 	Password string `json:"password"`
-	Terms    int    `json:"terms"`
+	Terms    int64  `json:"terms"`
 	Nonce    string `json:"nonce"`
 }
 

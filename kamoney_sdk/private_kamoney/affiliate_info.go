@@ -14,7 +14,7 @@ import (
 func (s *privateRequests) GetAffiliateInfo(in kamoney_sdk_dtos.GetAffiliateInfoRequestParams) (out kamoney_sdk_dtos.GetAffiliateInfoRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
 
-	req, err := s.r.RequestHandler("GET", ENDPOINT_SERVICES_AFFILIATES, in)
+	req, err := s.r.RequestHandler("GET", ENDPOINT_ACCOUNT_AFFILIATES, in)
 	if err != nil {
 		log.Panicln("GSLB 01: ", err.Error())
 		return

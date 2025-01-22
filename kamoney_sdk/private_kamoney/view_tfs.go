@@ -14,7 +14,7 @@ import (
 func (s *privateRequests) ViewTfs(in kamoney_sdk_dtos.ViewTfsRequestParams) (out kamoney_sdk_dtos.ViewTfsRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
 
-	req, err := s.r.RequestHandler("GET", ENDPOINT_SERVICES_TFS, in)
+	req, err := s.r.RequestHandler("GET", ENDPOINT_SECURITY_TFS, in)
 	if err != nil {
 		log.Panicln("VT 01: ", err.Error())
 		return

@@ -8,11 +8,11 @@ type ListAPIsRequestParams struct {
 type ListAPIsRequestResponse struct {
 	Common
 	Data []struct {
-		ID              int    `json:"id"`
+		ID              int64  `json:"id"`
 		Public          string `json:"public"`
 		Created         string `json:"created"`
 		IP              string `json:"ip"`
-		EnabledServices int    `json:"enabled_services"`
-		EnabledMerchant int    `json:"enabled_merchant"`
+		EnabledServices int64  `json:"enabled_services"`
+		EnabledMerchant int64  `json:"enabled_merchant"`
 	} `json:"data"`
 }

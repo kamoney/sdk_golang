@@ -11,12 +11,12 @@ import (
 	"github.com/kamoney/sdk_golang/utility"
 )
 
-func (s *privateRequests) ViewAntiPhishing(in kamoney_sdk_dtos.ViewAntiPhishingRequestParams) (out kamoney_sdk_dtos.ViewAntiPhishingRequestResponse, err error) {
+func (s *privateRequests) GetWithdrawReceiptDownload(in kamoney_sdk_dtos.GetWithdrawReceiptDownloadRequestParams) (out kamoney_sdk_dtos.GetWithdrawReceiptDownloadRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
 
-	req, err := s.r.RequestHandler("POST", ENDPOINT_SECURITY_ANTIPHISHING_VIEW, in)
+	req, err := s.r.RequestHandler("GET", ENDPOINT_WITHDRAW_RECEIPT_DOWNLOAD(in.ID, in.FileName), in)
 	if err != nil {
-		log.Panicln("VAP 01: ", err.Error())
+		log.Panicln("GWR 01: ", err.Error())
 		return
 	}
 
@@ -24,7 +24,8 @@ func (s *privateRequests) ViewAntiPhishing(in kamoney_sdk_dtos.ViewAntiPhishingR
 
 	queryStr := s.gerQueryString(req.URL.Query(), map[string]string{
 		"nonce":    in.Nonce,
-		"password": in.Password,
+		"id":       in.ID,
+		"filename": in.FileName,
 	})
 
 	req.URL.RawQuery = queryStr
@@ -32,20 +33,20 @@ func (s *privateRequests) ViewAntiPhishing(in kamoney_sdk_dtos.ViewAntiPhishingR
 
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Panicln("VAP 02: ", err.Error())
+		log.Panicln("GWR 02: ", err.Error())
 		return
 	}
 	defer resp.Body.Close()
 
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Panicln("VAP 03: ", err.Error())
+		log.Panicln("GWR 03: ", err.Error())
 		return
 	}
 	fmt.Println(string(bodyBytes))
 	err = json.Unmarshal(bodyBytes, &out)
 	if err != nil {
-		log.Println("VAP 04: ", err.Error())
+		log.Println("GWR 04: ", err.Error())
 		return
 	}
 

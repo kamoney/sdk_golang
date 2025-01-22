@@ -9,9 +9,9 @@ type GetAffiliateInfoRequestResponse struct {
 	Data struct {
 		AffiliateCode string `json:"affiliate_code"`
 		Report        struct {
-			Indicated int `json:"indicated"`
-			Orders    int `json:"orders"`
-			Total     int `json:"total"`
+			Indicated int64 `json:"indicated"`
+			Orders    int64 `json:"orders"`
+			Total     int64 `json:"total"`
 		} `json:"report"`
 		List []struct {
 			Name    string `json:"name"`

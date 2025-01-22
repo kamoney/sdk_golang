@@ -67,6 +67,28 @@ func (r *RequestHandler) RequestHandler(method string, endpoint string, requestB
 			log.Panicln("rH 01: ", err)
 			return req, err
 		}
+	case "DELETE":
+		body, err := json.Marshal(requestBody)
+		if err != nil {
+			log.Panicln("rH 00: ", err)
+			return req, err
+		}
+
+		// It's necessary transform struct to map format
+		var result map[string]interface{}
+		json.Unmarshal(body, &result)
+
+		body, err = json.Marshal(result)
+		if err != nil {
+			log.Panicln("rH 00: ", err)
+			return req, err
+		}
+		fmt.Println(string(body))
+		req, err = http.NewRequest(http.MethodDelete, BASE_URL+endpoint, bytes.NewBuffer(body))
+		if err != nil {
+			log.Panicln("rH 01: ", err)
+			return req, err
+		}
 	case "GET":
 		req, err = http.NewRequest(http.MethodGet, BASE_URL+endpoint, nil)
 		if err != nil {

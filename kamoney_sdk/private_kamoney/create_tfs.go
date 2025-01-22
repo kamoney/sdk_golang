@@ -14,7 +14,7 @@ import (
 func (s *privateRequests) CreateTfs(in kamoney_sdk_dtos.CreateTfsRequestParams) (out kamoney_sdk_dtos.CreateTfsRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
 
-	req, err := s.r.RequestHandler("POST", ENDPOINT_SERVICES_TFS, in)
+	req, err := s.r.RequestHandler("POST", ENDPOINT_SECURITY_TFS, in)
 	if err != nil {
 		log.Panicln("VT 01: ", err.Error())
 		return

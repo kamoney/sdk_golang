@@ -1,7 +1,7 @@
 package kamoney_sdk_dtos
 
 type GetAccountNotificationRequestParams struct {
-	Page  int    `json:"page"`
+	Page  int64  `json:"page"`
 	Nonce string `json:"nonce"`
 }
 
@@ -9,12 +9,12 @@ type GetAccountNotificationRequestResponse struct {
 	Common
 	Data struct {
 		List []struct {
-			ID      int    `json:"id"`
+			ID      int64  `json:"id"`
 			Created string `json:"created"`
 			History string `json:"history"`
 			Read    bool   `json:"read"`
 		} `json:"list"`
-		Unread int `json:"unread"`
+		Unread int64 `json:"unread"`
 	} `json:"data"`
 }
 
@@ -26,14 +26,14 @@ type UpdateAccountNotificationReadAllRequestResponse struct {
 	Common
 	Data struct {
 		List []struct {
-			ID      int    `json:"id"`
+			ID      int64  `json:"id"`
 			Created string `json:"created"`
 			History string `json:"history"`
 			Read    bool   `json:"read"`
 			Title   string `json:"title"`
 			Type    string `json:"type"`
 		} `json:"list"`
-		Unread int `json:"unread"`
+		Unread int64 `json:"unread"`
 	} `json:"data"`
 }
 
@@ -46,13 +46,13 @@ type UpdateAccountNotificationReadIdRequestResponse struct {
 	Common
 	Data []struct {
 		List []struct {
-			ID      int    `json:"id"`
+			ID      int64  `json:"id"`
 			Created string `json:"created"`
 			History string `json:"history"`
 			Read    bool   `json:"read"`
 			Title   string `json:"title"`
 			Type    string `json:"type"`
 		} `json:"list"`
-		Unread int `json:"unread"`
+		Unread int64 `json:"unread"`
 	} `json:"data,omitempty"`
 }

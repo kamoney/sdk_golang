@@ -18,8 +18,8 @@ type GetServicesLimitsMerchantRequestResponse struct {
 		AutomaticMax int64    `json:"automatic_max"`
 		Info         []string `json:"info"`
 		Limits       []struct {
-			Owner int `json:"owner"`
-			Other int `json:"other"`
+			Owner int64 `json:"owner"`
+			Other int64 `json:"other"`
 		} `json:"limits"`
 	} `json:"data"`
 }

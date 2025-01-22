@@ -7,7 +7,7 @@ type GetRewardRequestParams struct {
 type GetRewardRequestResponse struct {
 	Common
 	Data struct {
-		Affiliate int `json:"affiliate"`
-		Points    int `json:"points"`
+		Affiliate int64 `json:"affiliate"`
+		Points    int64 `json:"points"`
 	} `json:"data"`
 }

@@ -14,7 +14,7 @@ import (
 func (s *privateRequests) CancelAccount(in kamoney_sdk_dtos.CancelAccountRequestParams) (out kamoney_sdk_dtos.CancelAccountRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
 
-	req, err := s.r.RequestHandler("POST", ENDPOINT_SERVICES_ACTION, in)
+	req, err := s.r.RequestHandler("POST", ENDPOINT_SECURITY_ACTION, in)
 	if err != nil {
 		log.Panicln("CE 01: ", err.Error())
 		return

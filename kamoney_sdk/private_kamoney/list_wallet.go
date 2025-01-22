@@ -14,7 +14,7 @@ import (
 func (s *privateRequests) ListWallet(in kamoney_sdk_dtos.ListWalletRequestParams) (out kamoney_sdk_dtos.ListWalletRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
 
-	req, err := s.r.RequestHandler("GET", ENDPOINT_SERVICES_WALLET, in)
+	req, err := s.r.RequestHandler("GET", ENDPOINT_WALLET, in)
 	if err != nil {
 		log.Panicln("ALW 01: ", err.Error())
 		return

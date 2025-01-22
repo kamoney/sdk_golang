@@ -14,7 +14,7 @@ import (
 func (s *privateRequests) GetServicesLimitsOrder(in kamoney_sdk_dtos.GetServicesLimitsOrderRequestParams) (out kamoney_sdk_dtos.GetServicesLimitsOrderRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
 
-	req, err := s.r.RequestHandler("GET", ENDPOINT_SERVICES_LIMITS_ORDER, in)
+	req, err := s.r.RequestHandler("GET", ENDPOINT_ACCOUNT_SERVICES_LIMITS_ORDER, in)
 	if err != nil {
 		log.Panicln("GSLO 01: ", err.Error())
 		return

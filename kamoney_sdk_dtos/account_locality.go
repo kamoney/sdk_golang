@@ -20,16 +20,16 @@ type AccountLocalityRequestResponse struct {
 		Neighborhood string `json:"neighborhood"`
 		Zipcode      string `json:"zipcode"`
 		City         struct {
-			ID   int    `json:"id"`
+			ID   int64  `json:"id"`
 			Name string `json:"name"`
 		} `json:"city"`
 		State struct {
-			ID   int    `json:"id"`
+			ID   int64  `json:"id"`
 			Name string `json:"name"`
 			UF   string `json:"uf"`
 		} `json:"state"`
 		Country struct {
-			ID       int    `json:"id"`
+			ID       int64  `json:"id"`
 			Name     string `json:"name"`
 			Initials string `json:"initials"`
 		} `json:"country"`
@@ -49,16 +49,16 @@ type GetAccountLocalityRequestResponse struct {
 		Neighborhood string `json:"neighborhood"`
 		Zipcode      string `json:"zipcode"`
 		City         struct {
-			ID   int    `json:"id"`
+			ID   int64  `json:"id"`
 			Name string `json:"name"`
 		} `json:"city"`
 		State struct {
-			ID   int    `json:"id"`
+			ID   int64  `json:"id"`
 			Name string `json:"name"`
 			UF   string `json:"uf"`
 		} `json:"state"`
 		Country struct {
-			ID       int    `json:"id"`
+			ID       int64  `json:"id"`
 			Name     string `json:"name"`
 			Initials string `json:"initials"`
 		} `json:"country"`

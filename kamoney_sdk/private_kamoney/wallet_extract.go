@@ -14,7 +14,7 @@ import (
 func (s *privateRequests) WalletExtract(in kamoney_sdk_dtos.WalletExtractRequestParams) (out kamoney_sdk_dtos.WalletExtractRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
 
-	req, err := s.r.RequestHandler("GET", ENDPOINT_SERVICES_WALLET+"/"+in.Search+"/extract", in)
+	req, err := s.r.RequestHandler("GET", ENDPOINT_WALLET+"/"+in.Search+"/extract", in)
 	if err != nil {
 		log.Panicln("ALW 01: ", err.Error())
 		return

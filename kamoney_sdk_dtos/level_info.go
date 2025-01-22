@@ -7,16 +7,16 @@ type GetLevelInfoRequestParams struct {
 type GetLevelInfoRequestResponse struct {
 	Common
 	Data struct {
-		UserID int `json:"user_id"`
+		UserID int64 `json:"user_id"`
 		Level  struct {
-			ID                 int    `json:"id"`
+			ID                 int64  `json:"id"`
 			Name               string `json:"name"`
-			VerificationUpdate int    `json:"verification_update"`
+			VerificationUpdate int64  `json:"verification_update"`
 		} `json:"level"`
 		Verify struct {
 			Enabled bool `json:"enabled"`
 			Status  struct {
-				ID   int    `json:"id"`
+				ID   int64  `json:"id"`
 				Name string `json:"name"`
 			} `json:"status"`
 			Message string `json:"message"`

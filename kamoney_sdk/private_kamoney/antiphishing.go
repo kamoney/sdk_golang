@@ -14,7 +14,7 @@ import (
 func (s *privateRequests) AntiPhishing(in kamoney_sdk_dtos.AntiPhishingRequestParams) (out kamoney_sdk_dtos.AntiPhishingRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
 
-	req, err := s.r.RequestHandler("POST", ENDPOINT_SERVICES_ANTIPHISHING, in)
+	req, err := s.r.RequestHandler("POST", ENDPOINT_SECURITY_ANTIPHISHING, in)
 	if err != nil {
 		log.Panicln("AP 01: ", err.Error())
 		return

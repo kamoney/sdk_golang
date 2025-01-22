@@ -14,7 +14,7 @@ import (
 func (s *privateRequests) ListAPIs(in kamoney_sdk_dtos.ListAPIsRequestParams) (out kamoney_sdk_dtos.ListAPIsRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
 
-	req, err := s.r.RequestHandler("GET", ENDPOINT_SERVICES_API, in)
+	req, err := s.r.RequestHandler("GET", ENDPOINT_SECURITY_API, in)
 	if err != nil {
 		log.Panicln("CA 01: ", err.Error())
 		return

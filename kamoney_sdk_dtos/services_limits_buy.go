@@ -10,16 +10,16 @@ type GetServicesLimitsBuyRequestResponse struct {
 		Code         string   `json:"code"`
 		Name         string   `json:"name"`
 		Maintenance  bool     `json:"maintenance"`
-		LimitMin     int      `json:"limit_min"`
-		LimitMax     int      `json:"limit_max"`
-		FeeThreshold int      `json:"fee_threshold"`
-		FeeAmount    int      `json:"fee_amount"`
+		LimitMin     int64    `json:"limit_min"`
+		LimitMax     int64    `json:"limit_max"`
+		FeeThreshold int64    `json:"fee_threshold"`
+		FeeAmount    int64    `json:"fee_amount"`
 		Automatic    bool     `json:"automatic"`
-		AutomaticMax int      `json:"automatic_max"`
+		AutomaticMax int64    `json:"automatic_max"`
 		Info         []string `json:"info"`
 		Limits       []struct {
-			Owner int `json:"owner"`
-			Other int `json:"other"`
+			Owner int64 `json:"owner"`
+			Other int64 `json:"other"`
 		} `json:"limits"`
 	} `json:"data"`
 }

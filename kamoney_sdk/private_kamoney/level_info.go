@@ -14,7 +14,7 @@ import (
 func (s *privateRequests) GetLevelInfo(in kamoney_sdk_dtos.GetLevelInfoRequestParams) (out kamoney_sdk_dtos.GetLevelInfoRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
 
-	req, err := s.r.RequestHandler("GET", ENDPOINT_SERVICES_LEVEL, in)
+	req, err := s.r.RequestHandler("GET", ENDPOINT_ACCOUNT_LEVEL, in)
 	if err != nil {
 		log.Panicln("GSLB 01: ", err.Error())
 		return

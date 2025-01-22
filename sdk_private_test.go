@@ -347,3 +347,191 @@ func TestListAPIs(t *testing.T) {
 
 	fmt.Println(response)
 }
+
+// Only through portal access
+func TestDeleteAPI(t *testing.T) {
+	response, err := private.DeleteAPI(kamoney_sdk_dtos.DeleteAPIRequestParams{
+		ID:       1,
+		Password: "",
+		Tfa:      1,
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(response)
+}
+
+// Only through portal access
+func TestGetAPISecret(t *testing.T) {
+	response, err := private.GetAPISecret(kamoney_sdk_dtos.GetAPISecretRequestParams{
+		ID:       1,
+		Password: "",
+		Tfa:      1,
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(response)
+}
+
+func TestListRecipients(t *testing.T) {
+	response, err := private.ListRecipients(kamoney_sdk_dtos.ListRecipientsRequestParams{})
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(response)
+}
+
+func TestCreateRecipients(t *testing.T) {
+	response, err := private.CreateRecipients(kamoney_sdk_dtos.CreateRecipientsRequestParams{
+		Type:          1,
+		AccountType:   "CC",
+		Bank:          1,
+		Agency:        "9875",
+		AccountNumber: "2222-3",
+		Owner:         "Nome do Fulano",
+		PersonalID:    "08830121622",
+		Description:   "Test do SDK",
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(response)
+}
+
+func TestDeleteRecipients(t *testing.T) {
+	response, err := private.DeleteRecipients(kamoney_sdk_dtos.DeleteRecipientsRequestParams{
+		ID: 2908,
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(response)
+}
+
+// endpoint still Exists ? ERR 400
+func TestUpdateRecipients(t *testing.T) {
+	response, err := private.UpdateRecipients(kamoney_sdk_dtos.UpdateRecipientsRequestParams{
+		ID:            2908,
+		Type:          1,
+		AccountType:   "CC",
+		Bank:          1,
+		Agency:        "0000",
+		AccountNumber: "98765-3",
+		Owner:         "João do Fulano",
+		PersonalID:    "05650090602",
+		Description:   "Test Update do SDK",
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(response)
+}
+
+func TestGetRecipientInfo(t *testing.T) {
+	response, err := private.GetRecipientInfo(kamoney_sdk_dtos.GetRecipientInfoRequestParams{
+		AccountType:    1,
+		Bank:           1,
+		Agency:         "0000",
+		AccountNumber:  "98765-0",
+		Owner:          "Claudeci Goularte",
+		PersonalID:     "05650090602",
+		Description:    "Novo cadastro.3 16-05-2022",
+		Main:           0,
+		DDD:            "31",
+		MobileOperator: "Claro",
+		PhoneNumber:    "982568095",
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(response)
+}
+
+func TestCreateWithdraw(t *testing.T) {
+	response, err := private.CreateWithdraw(kamoney_sdk_dtos.CreateWithdrawRequestParams{
+		Asset:  "R$",
+		Type:   "CPF",
+		Key:    "08830121622",
+		Amount: 10,
+		Tfa:    "123456",
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(response)
+}
+
+func TestListWithdraw(t *testing.T) {
+	response, err := private.ListWithdraw(kamoney_sdk_dtos.ListWithdrawRequestParams{})
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(response)
+}
+
+func TestGetWithdrawInfo(t *testing.T) {
+	response, err := private.GetWithdrawInfo(kamoney_sdk_dtos.GetWithdrawInfoRequestParams{
+		ID: "8WWrwErRURkCviDdO1E0CibEk7uC1gbpuLUkgT0Ga0H",
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(response)
+}
+
+func TestGetWithdrawReceipt(t *testing.T) {
+	response, err := private.GetWithdrawReceipt(kamoney_sdk_dtos.GetWithdrawReceiptRequestParams{
+		ID: "8WWrwErRURkCviDdO1E0CibEk7uC1gbpuLUkgT0Ga0H",
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(response)
+}
+
+// With no data return array, and if theres data ? will return []struct or a struct ? how to handle ?
+func TestGetWithdrawReceiptDownload(t *testing.T) {
+	response, err := private.GetWithdrawReceiptDownload(kamoney_sdk_dtos.GetWithdrawReceiptDownloadRequestParams{
+		ID:       "8WWrwErRURkCviDdO1E0CibEk7uC1gbpuLUkgT0Ga0H",
+		FileName: "",
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(response)
+}
+
+func TestListOrder(t *testing.T) {
+	response, err := private.ListOrder(kamoney_sdk_dtos.ListOrderRequestParams{})
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(response)
+}

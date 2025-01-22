@@ -14,7 +14,7 @@ import (
 func (s *privateRequests) GetReward(in kamoney_sdk_dtos.GetRewardRequestParams) (out kamoney_sdk_dtos.GetRewardRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
 
-	req, err := s.r.RequestHandler("GET", ENDPOINT_SERVICES_REWARD, in)
+	req, err := s.r.RequestHandler("GET", ENDPOINT_ACCOUNT_REWARD, in)
 	if err != nil {
 		log.Panicln("GR 01: ", err.Error())
 		return

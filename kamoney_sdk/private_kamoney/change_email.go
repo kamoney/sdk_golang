@@ -14,7 +14,7 @@ import (
 func (s *privateRequests) ChangeEmail(in kamoney_sdk_dtos.ChangeEmailRequestParams) (out kamoney_sdk_dtos.ChangeEmailRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
 
-	req, err := s.r.RequestHandler("POST", ENDPOINT_SERVICES_EMAIL, in)
+	req, err := s.r.RequestHandler("POST", ENDPOINT_SECURITY_EMAIL, in)
 	if err != nil {
 		log.Panicln("CE 01: ", err.Error())
 		return

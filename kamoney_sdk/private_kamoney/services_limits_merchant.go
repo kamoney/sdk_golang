@@ -14,7 +14,7 @@ import (
 func (s *privateRequests) GetServicesLimitsMerchant(in kamoney_sdk_dtos.GetServicesLimitsMerchantRequestParams) (out kamoney_sdk_dtos.GetServicesLimitsMerchantRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
 
-	req, err := s.r.RequestHandler("GET", ENDPOINT_SERVICES_LIMITS_MERCHANT, in)
+	req, err := s.r.RequestHandler("GET", ENDPOINT_ACCOUNT_SERVICES_LIMITS_MERCHANT, in)
 	if err != nil {
 		log.Panicln("GSLM 01: ", err.Error())
 		return

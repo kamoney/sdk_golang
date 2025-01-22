@@ -1,7 +1,7 @@
 package kamoney_sdk_dtos
 
 type WalletExtractRequestParams struct {
-	Page   int    `json:"page"`
+	Page   int64  `json:"page"`
 	Begin  string `json:"begin"`
 	End    string `json:"end"`
 	Search string `json:"search"`
@@ -15,7 +15,7 @@ type WalletExtractRequestResponse struct {
 		Created         string  `json:"created"`
 		History         string  `json:"history"`
 		BalancePrevious float64 `json:"balance_previous"`
-		Type            int     `json:"type"`
+		Type            int64   `json:"type"`
 		Amount          float64 `json:"amount"`
 		Balance         float64 `json:"balance"`
 		Status          struct {
@@ -26,7 +26,7 @@ type WalletExtractRequestResponse struct {
 		AmountUsed      float64 `json:"amount_used"`
 		AmountRemaining float64 `json:"amount_remaining"`
 		TypeRegister    struct {
-			ID   int    `json:"id"`
+			ID   int64  `json:"id"`
 			Name string `json:"name"`
 		} `json:"type_register"`
 	} `json:"data"`
