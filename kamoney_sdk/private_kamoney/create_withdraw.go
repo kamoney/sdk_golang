@@ -8,12 +8,9 @@ import (
 	"net/http"
 
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
-	"github.com/kamoney/sdk_golang/utility"
 )
 
 func (s *privateRequests) CreateWithdraw(in kamoney_sdk_dtos.CreateWithdrawRequestParams) (out kamoney_sdk_dtos.CreateWithdrawRequestResponse, err error) {
-	in.Nonce = fmt.Sprint(utility.GenNonce())
-
 	req, err := s.r.RequestHandler("POST", ENDPOINT_WITHDRAW, in)
 	if err != nil {
 		log.Panicln("CW 01: ", err.Error())
@@ -22,16 +19,8 @@ func (s *privateRequests) CreateWithdraw(in kamoney_sdk_dtos.CreateWithdrawReque
 
 	client := &http.Client{}
 
-	queryStr := s.gerQueryString(req.URL.Query(), map[string]string{
-		"nonce":  in.Nonce,
-		"asset":  in.Asset,
-		"type":   in.Type,
-		"key":    in.Key,
-		"amount": fmt.Sprint(in.Amount),
-		"tfa":    in.Tfa,
-	})
-
-	req.URL.RawQuery = queryStr
+	q := s.mapToURLValues(s.gerQueryString(in))
+	req.URL.RawQuery = q.Encode()
 	s.r.signRequest(req)
 
 	resp, err := client.Do(req)

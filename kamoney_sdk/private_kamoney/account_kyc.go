@@ -2,18 +2,14 @@ package private_kamoney
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
-	"github.com/kamoney/sdk_golang/utility"
 )
 
 func (s *privateRequests) GetAccountKyc(in kamoney_sdk_dtos.GetAccountKycRequestParams) (out kamoney_sdk_dtos.GetAccountKycRequestResponse, err error) {
-	in.Nonce = fmt.Sprint(utility.GenNonce())
-
 	req, err := s.r.RequestHandler("GET", ENDPOINT_ACCOUNT_KYC, in)
 	if err != nil {
 		log.Panicln("AK 01: ", err.Error())
@@ -22,11 +18,8 @@ func (s *privateRequests) GetAccountKyc(in kamoney_sdk_dtos.GetAccountKycRequest
 
 	client := &http.Client{}
 
-	queryStr := s.gerQueryString(req.URL.Query(), map[string]string{
-		"nonce": in.Nonce,
-	})
-
-	req.URL.RawQuery = queryStr
+	q := s.mapToURLValues(s.gerQueryString(in))
+	req.URL.RawQuery = q.Encode()
 	s.r.signRequest(req)
 
 	resp, err := client.Do(req)

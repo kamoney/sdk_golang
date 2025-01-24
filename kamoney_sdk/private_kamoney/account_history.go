@@ -2,18 +2,14 @@ package private_kamoney
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
-	"github.com/kamoney/sdk_golang/utility"
 )
 
 func (s *privateRequests) GetAccountHistory(in kamoney_sdk_dtos.GetAccountHistoryRequestParams) (out kamoney_sdk_dtos.GetAccountHistoryRequestResponse, err error) {
-	in.Nonce = fmt.Sprint(utility.GenNonce())
-
 	req, err := s.r.RequestHandler("GET", ENDPOINT_ACCOUNT_HISTORY, in)
 	if err != nil {
 		log.Panicln("AC 01: ", err.Error())
@@ -22,11 +18,9 @@ func (s *privateRequests) GetAccountHistory(in kamoney_sdk_dtos.GetAccountHistor
 
 	client := &http.Client{}
 
-	queryStr := s.gerQueryString(req.URL.Query(), map[string]string{
-		"nonce": in.Nonce,
-	})
+	q := s.mapToURLValues(s.gerQueryString(in))
+	req.URL.RawQuery = q.Encode()
 
-	req.URL.RawQuery = queryStr
 	s.r.signRequest(req)
 
 	resp, err := client.Do(req)

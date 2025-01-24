@@ -8,12 +8,9 @@ import (
 	"net/http"
 
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
-	"github.com/kamoney/sdk_golang/utility"
 )
 
 func (s *privateRequests) ViewTfs(in kamoney_sdk_dtos.ViewTfsRequestParams) (out kamoney_sdk_dtos.ViewTfsRequestResponse, err error) {
-	in.Nonce = fmt.Sprint(utility.GenNonce())
-
 	req, err := s.r.RequestHandler("GET", ENDPOINT_SECURITY_TFS, in)
 	if err != nil {
 		log.Panicln("VT 01: ", err.Error())
@@ -22,11 +19,8 @@ func (s *privateRequests) ViewTfs(in kamoney_sdk_dtos.ViewTfsRequestParams) (out
 
 	client := &http.Client{}
 
-	queryStr := s.gerQueryString(req.URL.Query(), map[string]string{
-		"nonce": in.Nonce,
-	})
-
-	req.URL.RawQuery = queryStr
+	q := s.mapToURLValues(s.gerQueryString(in))
+	req.URL.RawQuery = q.Encode()
 	s.r.signRequest(req)
 
 	resp, err := client.Do(req)

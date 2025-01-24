@@ -1,7 +1,6 @@
 package kamoney_sdk_dtos
 
 type ViewTfsRequestParams struct {
-	Nonce string `json:"nonce"`
 }
 
 type ViewTfsRequestResponse struct {

@@ -1,8 +1,7 @@
 package kamoney_sdk_dtos
 
 type GetWithdrawReceiptRequestParams struct {
-	Nonce string `json:"nonce"`
-	ID    string `json:"id"`
+	ID string `json:"id"`
 }
 
 type GetWithdrawReceiptRequestResponse struct {

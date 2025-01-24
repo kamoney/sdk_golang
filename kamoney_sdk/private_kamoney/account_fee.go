@@ -8,12 +8,9 @@ import (
 	"net/http"
 
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
-	"github.com/kamoney/sdk_golang/utility"
 )
 
 func (s *privateRequests) GetFee(in kamoney_sdk_dtos.GetFeeRequestParams) (out kamoney_sdk_dtos.GetFeeRequestResponse, err error) {
-	in.Nonce = fmt.Sprint(utility.GenNonce())
-
 	req, err := s.r.RequestHandler("GET", ENDPOINT_ACCOUNT_FEE, in)
 	if err != nil {
 		log.Panicln("GSLB 01: ", err.Error())
@@ -22,11 +19,9 @@ func (s *privateRequests) GetFee(in kamoney_sdk_dtos.GetFeeRequestParams) (out k
 
 	client := &http.Client{}
 
-	queryStr := s.gerQueryString(req.URL.Query(), map[string]string{
-		"nonce": in.Nonce,
-	})
+	q := s.mapToURLValues(s.gerQueryString(in))
+	req.URL.RawQuery = q.Encode()
 
-	req.URL.RawQuery = queryStr
 	s.r.signRequest(req)
 
 	resp, err := client.Do(req)

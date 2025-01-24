@@ -1,7 +1,6 @@
 package kamoney_sdk_dtos
 
 type GetFeeRequestParams struct {
-	Nonce string `json:"nonce"`
 }
 
 type GetFeeRequestResponse struct {

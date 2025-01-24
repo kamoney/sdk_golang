@@ -8,12 +8,9 @@ import (
 	"net/http"
 
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
-	"github.com/kamoney/sdk_golang/utility"
 )
 
 func (s *privateRequests) ListWithdraw(in kamoney_sdk_dtos.ListWithdrawRequestParams) (out kamoney_sdk_dtos.ListWithdrawRequestResponse, err error) {
-	in.Nonce = fmt.Sprint(utility.GenNonce())
-
 	req, err := s.r.RequestHandler("GET", ENDPOINT_WITHDRAW, in)
 	if err != nil {
 		log.Panicln("LW 01: ", err.Error())
@@ -22,11 +19,8 @@ func (s *privateRequests) ListWithdraw(in kamoney_sdk_dtos.ListWithdrawRequestPa
 
 	client := &http.Client{}
 
-	queryStr := s.gerQueryString(req.URL.Query(), map[string]string{
-		"nonce": in.Nonce,
-	})
-
-	req.URL.RawQuery = queryStr
+	q := s.mapToURLValues(s.gerQueryString(in))
+	req.URL.RawQuery = q.Encode()
 	s.r.signRequest(req)
 
 	resp, err := client.Do(req)

@@ -1,7 +1,6 @@
 package kamoney_sdk_dtos
 
 type GetServicesLimitsOrderRequestParams struct {
-	Nonce string `json:"nonce"`
 }
 
 type GetServicesLimitsOrderRequestResponse struct {

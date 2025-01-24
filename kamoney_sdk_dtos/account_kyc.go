@@ -1,7 +1,6 @@
 package kamoney_sdk_dtos
 
 type GetAccountKycRequestParams struct {
-	Nonce string `json:"nonce"`
 }
 
 type GetAccountKycRequestResponse struct {

@@ -8,12 +8,9 @@ import (
 	"net/http"
 
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
-	"github.com/kamoney/sdk_golang/utility"
 )
 
 func (s *privateRequests) GetWithdrawReceiptDownload(in kamoney_sdk_dtos.GetWithdrawReceiptDownloadRequestParams) (out kamoney_sdk_dtos.GetWithdrawReceiptDownloadRequestResponse, err error) {
-	in.Nonce = fmt.Sprint(utility.GenNonce())
-
 	req, err := s.r.RequestHandler("GET", ENDPOINT_WITHDRAW_RECEIPT_DOWNLOAD(in.ID, in.FileName), in)
 	if err != nil {
 		log.Panicln("GWR 01: ", err.Error())
@@ -22,13 +19,8 @@ func (s *privateRequests) GetWithdrawReceiptDownload(in kamoney_sdk_dtos.GetWith
 
 	client := &http.Client{}
 
-	queryStr := s.gerQueryString(req.URL.Query(), map[string]string{
-		"nonce":    in.Nonce,
-		"id":       in.ID,
-		"filename": in.FileName,
-	})
-
-	req.URL.RawQuery = queryStr
+	q := s.mapToURLValues(s.gerQueryString(in))
+	req.URL.RawQuery = q.Encode()
 	s.r.signRequest(req)
 
 	resp, err := client.Do(req)

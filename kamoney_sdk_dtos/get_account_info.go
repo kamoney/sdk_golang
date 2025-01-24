@@ -1,18 +1,6 @@
 package kamoney_sdk_dtos
 
-type AccountInfoRequestParams struct {
-	Name        string `json:"name"`
-	PersonalID  string `json:"personal_id"`
-	DateOfBirth string `json:"date_of_birth"`
-	Nonce       string `json:"nonce"`
-}
-
-type AccountInfoRequestResponse struct {
-	Common
-}
-
 type GetAccountInfoRequestParams struct {
-	Nonce string `json:"nonce"`
 }
 
 type GetAccountInfoRequestResponse struct {

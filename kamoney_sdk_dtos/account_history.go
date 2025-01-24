@@ -1,9 +1,8 @@
 package kamoney_sdk_dtos
 
 type GetAccountHistoryRequestParams struct {
-	Page  int64  `json:"page"`
-	Date  int64  `json:"date"`
-	Nonce string `json:"nonce"`
+	Page int64 `json:"page"`
+	Date int64 `json:"date"`
 }
 
 type GetAccountHistoryRequestResponse struct {

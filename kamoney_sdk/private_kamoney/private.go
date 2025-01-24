@@ -52,7 +52,14 @@ var (
 		return fmt.Sprintf("private/wallet/withdraw/%v/receipt/%v", id, filename)
 	}
 
-	ENDPOINT_ORDER = "private/order"
+	ENDPOINT_ORDER      = "private/order"
+	ENDPOINT_ORDER_INFO = func(id string) string {
+		return fmt.Sprintf("private/order/%v", id)
+	}
+	ENDPOINT_ORDER_RECEIPT          = "private/order/receipt"
+	ENDPOINT_ORDER_RECEIPT_DOWNLOAD = func(filename string) string {
+		return fmt.Sprintf("private/order/receipt/%v", filename)
+	}
 
 // ENDPOINT_AUTH              = "public/auth"
 //
@@ -62,8 +69,8 @@ var (
 )
 
 type PrivateRequestsInterface interface {
-	AccountInfo(kamoney_sdk_dtos.AccountInfoRequestParams) (kamoney_sdk_dtos.AccountInfoRequestResponse, error)
-	GetAccountInfo(kamoney_sdk_dtos.AccountInfoRequestParams) (kamoney_sdk_dtos.GetAccountInfoRequestResponse, error)
+	GetAccountInfo(kamoney_sdk_dtos.ChangeAccountInfoRequestParams) (kamoney_sdk_dtos.GetAccountInfoRequestResponse, error)
+	ChangeAccountInfo(kamoney_sdk_dtos.ChangeAccountInfoRequestParams) (kamoney_sdk_dtos.ChangeAccountInfoRequestResponse, error)
 
 	ListRecipients(kamoney_sdk_dtos.ListRecipientsRequestParams) (kamoney_sdk_dtos.ListRecipientsRequestResponse, error)
 	CreateRecipients(kamoney_sdk_dtos.CreateRecipientsRequestParams) (kamoney_sdk_dtos.CreateRecipientsRequestResponse, error)
@@ -112,8 +119,11 @@ type PrivateRequestsInterface interface {
 	GetWithdrawReceipt(kamoney_sdk_dtos.GetWithdrawReceiptRequestParams) (kamoney_sdk_dtos.GetWithdrawReceiptRequestResponse, error)
 	GetWithdrawReceiptDownload(kamoney_sdk_dtos.GetWithdrawReceiptDownloadRequestParams) (kamoney_sdk_dtos.GetWithdrawReceiptDownloadRequestResponse, error)
 
-	// CreateOrder(kamoney_sdk_dtos.CreateOrderRequestParams) (kamoney_sdk_dtos.CreateOrderRequestResponse, error)
+	CreateOrder(kamoney_sdk_dtos.CreateOrderRequestParams) (kamoney_sdk_dtos.CreateOrderRequestResponse, error)
 	ListOrder(kamoney_sdk_dtos.ListOrderRequestParams) (kamoney_sdk_dtos.ListOrderRequestResponse, error)
+	GetOrderInfo(kamoney_sdk_dtos.GetOrderInfoRequestParams) (kamoney_sdk_dtos.GetOrderInfoRequestResponse, error)
+	ListOrderReceipt(kamoney_sdk_dtos.ListOrderReceiptRequestParams) (kamoney_sdk_dtos.ListOrderReceiptRequestResponse, error)
+	GetOrderReceiptDownload(kamoney_sdk_dtos.GetOrderReceiptDownloadRequestParams) (kamoney_sdk_dtos.GetOrderReceiptDownloadRequestResponse, error)
 }
 
 type privateRequests struct {

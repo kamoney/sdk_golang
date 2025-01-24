@@ -10,10 +10,10 @@ import (
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
 )
 
-func (s *privateRequests) ChangePassword(in kamoney_sdk_dtos.ChangePasswordRequestParams) (out kamoney_sdk_dtos.ChangePasswordRequestResponse, err error) {
-	req, err := s.r.RequestHandler("POST", ENDPOINT_SECURITY_PASSWORD, in)
+func (s *privateRequests) GetOrderReceiptDownload(in kamoney_sdk_dtos.GetOrderReceiptDownloadRequestParams) (out kamoney_sdk_dtos.GetOrderReceiptDownloadRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_ORDER_RECEIPT, in)
 	if err != nil {
-		log.Panicln("CE 01: ", err.Error())
+		log.Panicln("GOI 01: ", err.Error())
 		return
 	}
 
@@ -25,20 +25,20 @@ func (s *privateRequests) ChangePassword(in kamoney_sdk_dtos.ChangePasswordReque
 
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Panicln("CE 02: ", err.Error())
+		log.Panicln("GOI 02: ", err.Error())
 		return
 	}
 	defer resp.Body.Close()
 
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Panicln("CE 03: ", err.Error())
+		log.Panicln("GOI 03: ", err.Error())
 		return
 	}
 	fmt.Println(string(bodyBytes))
 	err = json.Unmarshal(bodyBytes, &out)
 	if err != nil {
-		log.Println("CE 04: ", err.Error())
+		log.Println("GOI 04: ", err.Error())
 		return
 	}
 

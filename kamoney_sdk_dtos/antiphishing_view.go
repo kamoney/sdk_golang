@@ -2,7 +2,6 @@ package kamoney_sdk_dtos
 
 type ViewAntiPhishingRequestParams struct {
 	Password string `json:"password"`
-	Nonce    string `json:"nonce"`
 }
 
 type ViewAntiPhishingRequestResponse struct {

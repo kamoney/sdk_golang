@@ -1,7 +1,6 @@
 package kamoney_sdk_dtos
 
 type GetAffiliateInfoRequestParams struct {
-	Nonce string `json:"nonce"`
 }
 
 type GetAffiliateInfoRequestResponse struct {

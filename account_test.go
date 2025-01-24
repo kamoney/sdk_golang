@@ -8,7 +8,7 @@ import (
 )
 
 func TestGetAccountInfo(t *testing.T) {
-	response, err := private.GetAccountInfo(kamoney_sdk_dtos.AccountInfoRequestParams{})
+	response, err := private.GetAccountInfo(kamoney_sdk_dtos.ChangeAccountInfoRequestParams{})
 
 	if err != nil {
 		panic(err)
@@ -17,11 +17,11 @@ func TestGetAccountInfo(t *testing.T) {
 	fmt.Println(response)
 }
 
-func TestAccountInfo(t *testing.T) {
-	response, err := private.AccountInfo(kamoney_sdk_dtos.AccountInfoRequestParams{
+func TestChangeAccountInfo(t *testing.T) {
+	response, err := private.ChangeAccountInfo(kamoney_sdk_dtos.ChangeAccountInfoRequestParams{
 		Name:        "Igor Araújo da Silva",
 		PersonalID:  "08830121622",
-		DateOfBirth: "1995-02-05",
+		DateOfBirth: "1995-08-05",
 	})
 
 	if err != nil {
@@ -200,184 +200,6 @@ func TestGetReward(t *testing.T) {
 	fmt.Println(response)
 }
 
-func TestListWallet(t *testing.T) {
-	response, err := private.ListWallet(kamoney_sdk_dtos.ListWalletRequestParams{})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-// Filters is not working
-func TestWalletExtract(t *testing.T) {
-	response, err := private.WalletExtract(kamoney_sdk_dtos.WalletExtractRequestParams{
-		Search: "R$",
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-func TestSecurityAntiPhishing(t *testing.T) {
-	response, err := private.AntiPhishing(kamoney_sdk_dtos.AntiPhishingRequestParams{
-		Password: "7023346a",
-		Phrase:   "Abacaxi é fruta ?",
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-func TestSecurityViewAntiPhishing(t *testing.T) {
-	response, err := private.ViewAntiPhishing(kamoney_sdk_dtos.ViewAntiPhishingRequestParams{
-		Password: "7023346a",
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-// Only through portal access
-func TestSecurityViewTfs(t *testing.T) {
-	response, err := private.ViewTfs(kamoney_sdk_dtos.ViewTfsRequestParams{})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-// Only through portal access
-func TestSecurityCreateTfs(t *testing.T) {
-	response, err := private.CreateTfs(kamoney_sdk_dtos.CreateTfsRequestParams{
-		Password: "7023346a",
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-func TestSecurityEmail(t *testing.T) {
-	response, err := private.ChangeEmail(kamoney_sdk_dtos.ChangeEmailRequestParams{
-		Password: "7023346a",
-		Email:    "immortal.g.tv@gmail.com",
-		Tfa:      "123456",
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-func TestSecurityChangePassword(t *testing.T) {
-	response, err := private.ChangePassword(kamoney_sdk_dtos.ChangePasswordRequestParams{
-		Password:        "7023346a",
-		PasswordNew:     "7023346aA@",
-		PasswordConfirm: "7023346aA@",
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-func TestSecurityAction(t *testing.T) {
-	response, err := private.SecurityAction(kamoney_sdk_dtos.SecurityActionRequestParams{
-		Code: "730542",
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-// Not tested
-func TestCancelAccount(t *testing.T) {
-	response, err := private.CancelAccount(kamoney_sdk_dtos.CancelAccountRequestParams{
-		Password: "",
-		Terms:    1,
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-// Only through portal access
-func TestCreateAPI(t *testing.T) {
-	response, err := private.CreateAPI(kamoney_sdk_dtos.CreateAPIRequestParams{})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-// Only through portal access
-func TestListAPIs(t *testing.T) {
-	response, err := private.ListAPIs(kamoney_sdk_dtos.ListAPIsRequestParams{})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-// Only through portal access
-func TestDeleteAPI(t *testing.T) {
-	response, err := private.DeleteAPI(kamoney_sdk_dtos.DeleteAPIRequestParams{
-		ID:       1,
-		Password: "",
-		Tfa:      1,
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-// Only through portal access
-func TestGetAPISecret(t *testing.T) {
-	response, err := private.GetAPISecret(kamoney_sdk_dtos.GetAPISecretRequestParams{
-		ID:       1,
-		Password: "",
-		Tfa:      1,
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
 func TestListRecipients(t *testing.T) {
 	response, err := private.ListRecipients(kamoney_sdk_dtos.ListRecipientsRequestParams{})
 
@@ -454,80 +276,6 @@ func TestGetRecipientInfo(t *testing.T) {
 		MobileOperator: "Claro",
 		PhoneNumber:    "982568095",
 	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-func TestCreateWithdraw(t *testing.T) {
-	response, err := private.CreateWithdraw(kamoney_sdk_dtos.CreateWithdrawRequestParams{
-		Asset:  "R$",
-		Type:   "CPF",
-		Key:    "08830121622",
-		Amount: 10,
-		Tfa:    "123456",
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-func TestListWithdraw(t *testing.T) {
-	response, err := private.ListWithdraw(kamoney_sdk_dtos.ListWithdrawRequestParams{})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-func TestGetWithdrawInfo(t *testing.T) {
-	response, err := private.GetWithdrawInfo(kamoney_sdk_dtos.GetWithdrawInfoRequestParams{
-		ID: "8WWrwErRURkCviDdO1E0CibEk7uC1gbpuLUkgT0Ga0H",
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-func TestGetWithdrawReceipt(t *testing.T) {
-	response, err := private.GetWithdrawReceipt(kamoney_sdk_dtos.GetWithdrawReceiptRequestParams{
-		ID: "8WWrwErRURkCviDdO1E0CibEk7uC1gbpuLUkgT0Ga0H",
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-// With no data return array, and if theres data ? will return []struct or a struct ? how to handle ?
-func TestGetWithdrawReceiptDownload(t *testing.T) {
-	response, err := private.GetWithdrawReceiptDownload(kamoney_sdk_dtos.GetWithdrawReceiptDownloadRequestParams{
-		ID:       "8WWrwErRURkCviDdO1E0CibEk7uC1gbpuLUkgT0Ga0H",
-		FileName: "",
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(response)
-}
-
-func TestListOrder(t *testing.T) {
-	response, err := private.ListOrder(kamoney_sdk_dtos.ListOrderRequestParams{})
 
 	if err != nil {
 		panic(err)

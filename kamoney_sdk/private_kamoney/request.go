@@ -11,6 +11,10 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"reflect"
+	"strings"
+
+	"github.com/kamoney/sdk_golang/utility"
 )
 
 var (
@@ -22,14 +26,62 @@ type RequestHandler struct {
 	SecretKey string
 }
 
-func (s *privateRequests) gerQueryString(q url.Values, values map[string]string) (queryStr string) {
-	for k, v := range values {
-		q.Add(k, v)
+func (s *privateRequests) mapToURLValues(m map[string]string) url.Values {
+	values := url.Values{}
+	for key, value := range m {
+		values.Add(key, value) // Adiciona os pares chave-valor
+	}
+	return values
+}
+
+func (s *privateRequests) gerQueryString(obj interface{}) map[string]string {
+	result := make(map[string]string)
+	val := reflect.ValueOf(obj)
+	typ := reflect.TypeOf(obj)
+	fmt.Println("Obj: ", obj)
+
+	for i := 0; i < val.NumField(); i++ {
+		field := val.Field(i)
+		fieldType := typ.Field(i)
+		// fieldName := fieldType.Name
+
+		// fmt.Println(fieldType.Name, field.Kind())
+		if field.Kind() == reflect.Struct {
+			// Chamada recursiva para structs aninhadas
+			nestedFields := s.gerQueryString(field.Interface())
+			for _, v := range nestedFields {
+				// Adiciona as chaves da struct aninhada no map atual
+				result[strings.ToLower(fieldType.Tag.Get("json"))] = v
+			}
+		} else if field.Kind() == reflect.Slice {
+			// Se o campo for um slice, iteramos sobre os elementos
+			for j := 0; j < field.Len(); j++ {
+				elem := field.Index(j).Interface()
+				nestedFields := s.gerQueryString(elem)
+				for k, v := range nestedFields {
+					result[fmt.Sprintf("%s%s", fieldType.Tag.Get("json"), k)] = v
+				}
+			}
+		} else {
+			// Para campos simples (não structs nem slices)
+			result[fieldType.Tag.Get("json")] = fmt.Sprintf("%v", field.Interface())
+		}
 	}
 
-	queryStr = q.Encode()
-	return
+	result["nonce"] = fmt.Sprint(utility.GenNonce())
+	fmt.Println(result)
+
+	return result
 }
+
+// func (s *privateRequests) gerQueryString(q url.Values, values map[string]string) (queryStr string) {
+// 	for k, v := range values {
+// 		q.Add(k, v)
+// 	}
+
+// 	queryStr = q.Encode()
+// 	return
+// }
 
 func (r *RequestHandler) signRequest(req *http.Request) {
 	var sig hash.Hash

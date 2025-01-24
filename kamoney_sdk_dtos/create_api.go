@@ -1,7 +1,6 @@
 package kamoney_sdk_dtos
 
 type CreateAPIRequestParams struct {
-	Nonce string `json:"nonce"`
 }
 
 type CreateAPIRequestResponse struct {

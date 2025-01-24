@@ -1,8 +1,7 @@
 package kamoney_sdk_dtos
 
 type ListAPIsRequestParams struct {
-	Page  string `json:"page,omitempty"`
-	Nonce string `json:"nonce"`
+	Page string `json:"page,omitempty"`
 }
 
 type ListAPIsRequestResponse struct {

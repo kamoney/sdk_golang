@@ -8,12 +8,9 @@ import (
 	"net/http"
 
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
-	"github.com/kamoney/sdk_golang/utility"
 )
 
 func (s *privateRequests) AntiPhishing(in kamoney_sdk_dtos.AntiPhishingRequestParams) (out kamoney_sdk_dtos.AntiPhishingRequestResponse, err error) {
-	in.Nonce = fmt.Sprint(utility.GenNonce())
-
 	req, err := s.r.RequestHandler("POST", ENDPOINT_SECURITY_ANTIPHISHING, in)
 	if err != nil {
 		log.Panicln("AP 01: ", err.Error())
@@ -22,14 +19,8 @@ func (s *privateRequests) AntiPhishing(in kamoney_sdk_dtos.AntiPhishingRequestPa
 
 	client := &http.Client{}
 
-	queryStr := s.gerQueryString(req.URL.Query(), map[string]string{
-		"nonce":    in.Nonce,
-		"tfa":      fmt.Sprint(in.Tfa),
-		"password": in.Password,
-		"phrase":   in.Phrase,
-	})
-
-	req.URL.RawQuery = queryStr
+	q := s.mapToURLValues(s.gerQueryString(in))
+	req.URL.RawQuery = q.Encode()
 	s.r.signRequest(req)
 
 	resp, err := client.Do(req)

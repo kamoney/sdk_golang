@@ -1,7 +1,6 @@
 package kamoney_sdk_dtos
 
 type GetLevelInfoRequestParams struct {
-	Nonce string `json:"nonce"`
 }
 
 type GetLevelInfoRequestResponse struct {

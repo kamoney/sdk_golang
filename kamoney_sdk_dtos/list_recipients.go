@@ -1,7 +1,6 @@
 package kamoney_sdk_dtos
 
 type ListRecipientsRequestParams struct {
-	Nonce string `json:"nonce"`
 }
 
 type ListRecipientsRequestResponse struct {

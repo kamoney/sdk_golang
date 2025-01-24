@@ -37,7 +37,6 @@ type AccountLocalityRequestResponse struct {
 }
 
 type GetAccountLocalityRequestParams struct {
-	Nonce string `json:"nonce"`
 }
 
 type GetAccountLocalityRequestResponse struct {

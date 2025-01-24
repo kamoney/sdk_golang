@@ -4,7 +4,7 @@ type AntiPhishingRequestParams struct {
 	Password string `json:"password"`
 	Phrase   string `json:"phrase"`
 	Tfa      int64  `json:"tfa"` //in case is active
-	Nonce    string `json:"nonce"`
+
 }
 
 type AntiPhishingRequestResponse struct {

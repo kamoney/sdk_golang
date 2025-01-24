@@ -4,7 +4,7 @@ type GetAPISecretRequestParams struct {
 	ID       int64  `json:"id"`
 	Password string `json:"password"`
 	Tfa      int64  `json:"tfa"` // in case tfa is active
-	Nonce    string `json:"nonce"`
+
 }
 
 type GetAPISecretRequestResponse struct {

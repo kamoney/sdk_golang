@@ -1,8 +1,7 @@
 package kamoney_sdk_dtos
 
 type GetAccountNotificationRequestParams struct {
-	Page  int64  `json:"page"`
-	Nonce string `json:"nonce"`
+	Page int64 `json:"page"`
 }
 
 type GetAccountNotificationRequestResponse struct {
@@ -19,7 +18,6 @@ type GetAccountNotificationRequestResponse struct {
 }
 
 type UpdateAccountNotificationReadAllRequestParams struct {
-	Nonce string `json:"nonce"`
 }
 
 type UpdateAccountNotificationReadAllRequestResponse struct {
@@ -38,8 +36,7 @@ type UpdateAccountNotificationReadAllRequestResponse struct {
 }
 
 type UpdateAccountNotificationReadIdRequestParams struct {
-	ID    string `json:"id"`
-	Nonce string `json:"nonce"`
+	ID string `json:"id"`
 }
 
 type UpdateAccountNotificationReadIdRequestResponse struct {

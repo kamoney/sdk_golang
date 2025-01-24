@@ -8,12 +8,9 @@ import (
 	"net/http"
 
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
-	"github.com/kamoney/sdk_golang/utility"
 )
 
 func (s *privateRequests) ListAPIs(in kamoney_sdk_dtos.ListAPIsRequestParams) (out kamoney_sdk_dtos.ListAPIsRequestResponse, err error) {
-	in.Nonce = fmt.Sprint(utility.GenNonce())
-
 	req, err := s.r.RequestHandler("GET", ENDPOINT_SECURITY_API, in)
 	if err != nil {
 		log.Panicln("CA 01: ", err.Error())
@@ -22,12 +19,8 @@ func (s *privateRequests) ListAPIs(in kamoney_sdk_dtos.ListAPIsRequestParams) (o
 
 	client := &http.Client{}
 
-	queryStr := s.gerQueryString(req.URL.Query(), map[string]string{
-		"nonce": in.Nonce,
-	})
-
-	req.URL.RawQuery = queryStr
-	s.r.signRequest(req)
+	q := s.mapToURLValues(s.gerQueryString(in))
+	req.URL.RawQuery = q.Encode()
 
 	resp, err := client.Do(req)
 	if err != nil {

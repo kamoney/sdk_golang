@@ -8,12 +8,9 @@ import (
 	"net/http"
 
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
-	"github.com/kamoney/sdk_golang/utility"
 )
 
 func (s *privateRequests) ListRecipients(in kamoney_sdk_dtos.ListRecipientsRequestParams) (out kamoney_sdk_dtos.ListRecipientsRequestResponse, err error) {
-	in.Nonce = fmt.Sprint(utility.GenNonce())
-
 	req, err := s.r.RequestHandler("GET", ENDPOINT_ACCOUNT_RECIPIENTS, in)
 	if err != nil {
 		log.Panicln("CR 01: ", err.Error())
@@ -22,11 +19,8 @@ func (s *privateRequests) ListRecipients(in kamoney_sdk_dtos.ListRecipientsReque
 
 	client := &http.Client{}
 
-	queryStr := s.gerQueryString(req.URL.Query(), map[string]string{
-		"nonce": in.Nonce,
-	})
-
-	req.URL.RawQuery = queryStr
+	q := s.mapToURLValues(s.gerQueryString(in))
+	req.URL.RawQuery = q.Encode()
 	s.r.signRequest(req)
 
 	resp, err := client.Do(req)
