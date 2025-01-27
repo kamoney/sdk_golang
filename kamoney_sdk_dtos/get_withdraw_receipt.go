@@ -1,8 +1,6 @@
 package kamoney_sdk_dtos
 
-type GetWithdrawReceiptRequestParams struct {
-	ID string `json:"id"`
-}
+type GetWithdrawReceiptRequestParams struct{}
 
 type GetWithdrawReceiptRequestResponse struct {
 	Common

@@ -10,8 +10,8 @@ import (
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
 )
 
-func (s *privateRequests) GetWithdrawReceipt(in kamoney_sdk_dtos.GetWithdrawReceiptRequestParams) (out kamoney_sdk_dtos.GetWithdrawReceiptRequestResponse, err error) {
-	req, err := s.r.RequestHandler("GET", ENDPOINT_WITHDRAW_RECEIPT(in.ID), in)
+func (s *privateRequests) GetWithdrawReceipt(in kamoney_sdk_dtos.GetWithdrawReceiptRequestParams, id string) (out kamoney_sdk_dtos.GetWithdrawReceiptRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_WITHDRAW_RECEIPT(id), in)
 	if err != nil {
 		log.Panicln("GWR 01: ", err.Error())
 		return

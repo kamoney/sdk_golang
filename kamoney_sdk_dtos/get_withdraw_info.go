@@ -1,8 +1,6 @@
 package kamoney_sdk_dtos
 
-type GetWithdrawInfoRequestParams struct {
-	ID string `json:"id"`
-}
+type GetWithdrawInfoRequestParams struct{}
 
 type GetWithdrawInfoRequestResponse struct {
 	Common

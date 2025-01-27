@@ -5,16 +5,17 @@ import (
 	"testing"
 
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
+	"github.com/kamoney/sdk_golang/utility"
 )
 
 func TestListWallet(t *testing.T) {
 	response, err := private.ListWallet(kamoney_sdk_dtos.ListWalletRequestParams{})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 // Filters is not working
@@ -23,15 +24,15 @@ func TestWalletExtract(t *testing.T) {
 		Search: "R$",
 		Begin:  "",
 		End:    "",
-		Type:   "1",
-		Page:   1,
+		Type:   "",
+		Page:   0,
 	})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestCreateWithdraw(t *testing.T) {
@@ -41,58 +42,54 @@ func TestCreateWithdraw(t *testing.T) {
 		Key:    "08830121622",
 		Amount: 10,
 		Tfa:    "123456",
+		Nonce:  fmt.Sprint(utility.GenNonce()),
 	})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestListWithdraw(t *testing.T) {
 	response, err := private.ListWithdraw(kamoney_sdk_dtos.ListWithdrawRequestParams{})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestGetWithdrawInfo(t *testing.T) {
-	response, err := private.GetWithdrawInfo(kamoney_sdk_dtos.GetWithdrawInfoRequestParams{
-		ID: "8WWrwErRURkCviDdO1E0CibEk7uC1gbpuLUkgT0Ga0H",
-	})
+	response, err := private.GetWithdrawInfo(kamoney_sdk_dtos.GetWithdrawInfoRequestParams{}, "8WWrwErRURkCviDdO1E0CibEk7uC1gbpuLUkgT0Ga0H")
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestGetWithdrawReceipt(t *testing.T) {
-	response, err := private.GetWithdrawReceipt(kamoney_sdk_dtos.GetWithdrawReceiptRequestParams{
-		ID: "8WWrwErRURkCviDdO1E0CibEk7uC1gbpuLUkgT0Ga0H",
-	})
+	response, err := private.GetWithdrawReceipt(kamoney_sdk_dtos.GetWithdrawReceiptRequestParams{}, "8WWrwErRURkCviDdO1E0CibEk7uC1gbpuLUkgT0Ga0H")
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestGetWithdrawReceiptDownload(t *testing.T) {
 	response, err := private.GetWithdrawReceiptDownload(kamoney_sdk_dtos.GetWithdrawReceiptDownloadRequestParams{
-		ID:       "8WWrwErRURkCviDdO1E0CibEk7uC1gbpuLUkgT0Ga0H",
 		FileName: "",
-	})
+	}, "8WWrwErRURkCviDdO1E0CibEk7uC1gbpuLUkgT0Ga0H")
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }

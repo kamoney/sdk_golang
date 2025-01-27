@@ -8,10 +8,10 @@ package kamoney_sdk_test
 // 	})
 
 // 	if err != nil {
-// 		panic(err)
+// 		t.Error(err)
 // 	}
 
-// 	fmt.Println(response)
+// 	t.Log(response)
 // }
 
 // REMOVE ENDPOINTS
@@ -20,10 +20,10 @@ package kamoney_sdk_test
 // 	response, err := private.CreateAPI(kamoney_sdk_dtos.CreateAPIRequestParams{})
 
 // 	if err != nil {
-// 		panic(err)
+// 		t.Error(err)
 // 	}
 
-// 	fmt.Println(response)
+// 	t.Log(response)
 // }
 
 // // Only through portal access
@@ -31,10 +31,10 @@ package kamoney_sdk_test
 // 	response, err := private.ListAPI(kamoney_sdk_dtos.ListAPIRequestParams{})
 
 // 	if err != nil {
-// 		panic(err)
+// 		t.Error(err)
 // 	}
 
-// 	fmt.Println(response)
+// 	t.Log(response)
 // }
 
 // // Only through portal access
@@ -46,10 +46,10 @@ package kamoney_sdk_test
 // 	})
 
 // 	if err != nil {
-// 		panic(err)
+// 		t.Error(err)
 // 	}
 
-// 	fmt.Println(response)
+// 	t.Log(response)
 // }
 
 // // Only through portal access
@@ -61,10 +61,10 @@ package kamoney_sdk_test
 // 	})
 
 // 	if err != nil {
-// 		panic(err)
+// 		t.Error(err)
 // 	}
 
-// 	fmt.Println(response)
+// 	t.Log(response)
 // }
 
 // func TestSecurityChangeAntiPhishing(t *testing.T) {
@@ -74,10 +74,10 @@ package kamoney_sdk_test
 // 	})
 
 // 	if err != nil {
-// 		panic(err)
+// 		t.Error(err)
 // 	}
 
-// 	fmt.Println(response)
+// 	t.Log(response)
 // }
 
 // func TestSecurityViewAntiPhishing(t *testing.T) {
@@ -86,10 +86,10 @@ package kamoney_sdk_test
 // 	})
 
 // 	if err != nil {
-// 		panic(err)
+// 		t.Error(err)
 // 	}
 
-// 	fmt.Println(response)
+// 	t.Log(response)
 // }
 
 // // Only through portal access
@@ -97,10 +97,10 @@ package kamoney_sdk_test
 // 	response, err := private.GetTFS(kamoney_sdk_dtos.GetTFSRequestParams{})
 
 // 	if err != nil {
-// 		panic(err)
+// 		t.Error(err)
 // 	}
 
-// 	fmt.Println(response)
+// 	t.Log(response)
 // }
 
 // // Only through portal access
@@ -110,10 +110,10 @@ package kamoney_sdk_test
 // 	})
 
 // 	if err != nil {
-// 		panic(err)
+// 		t.Error(err)
 // 	}
 
-// 	fmt.Println(response)
+// 	t.Log(response)
 // }
 
 // func TestSecurityEmail(t *testing.T) {
@@ -124,10 +124,10 @@ package kamoney_sdk_test
 // 	})
 
 // 	if err != nil {
-// 		panic(err)
+// 		t.Error(err)
 // 	}
 
-// 	fmt.Println(response)
+// 	t.Log(response)
 // }
 
 // func TestSecurityChangePassword(t *testing.T) {
@@ -138,10 +138,10 @@ package kamoney_sdk_test
 // 	})
 
 // 	if err != nil {
-// 		panic(err)
+// 		t.Error(err)
 // 	}
 
-// 	fmt.Println(response)
+// 	t.Log(response)
 // }
 
 // func TestSecurityAction(t *testing.T) {
@@ -150,8 +150,8 @@ package kamoney_sdk_test
 // 	})
 
 // 	if err != nil {
-// 		panic(err)
+// 		t.Error(err)
 // 	}
 
-// 	fmt.Println(response)
+// 	t.Log(response)
 // }

@@ -14,7 +14,7 @@ type CreateBuyRequestParams struct {
 
 type CreateBuyRequestResponse struct {
 	Common
-	Data struct {
+	Data []struct {
 		ID        string  `json:"id"`
 		Created   string  `json:"created"`
 		Amount    float64 `json:"amount"`
@@ -27,8 +27,9 @@ type CreateBuyRequestResponse struct {
 				ExpiredIn string `json:"expired_in"`
 			} `json:"time"`
 		} `json:"quotation"`
-		Quantity string `json:"quantity"`
-		Asset    struct {
+		QuantityTotal string `json:"quantity_total"`
+		Quantity      string `json:"quantity"`
+		Asset         struct {
 			Asset string `json:"asset"`
 			Image string `json:"image"`
 			Title string `json:"title"`
@@ -53,20 +54,20 @@ type CreateBuyRequestResponse struct {
 			Name string `json:"name"`
 			Code string `json:"code"`
 			Img  string `json:"img"`
-			Info string `json:"info"`
 		} `json:"status"`
 		PaymentMethod struct {
-			Created      string  `json:"created"`
-			Amount       float64 `json:"amount"`
-			PayTime      string  `json:"pay_time"`
-			PayTimeLimit string  `json:"pay_time_limit"`
-			QRCode       string  `json:"qrcode"`
-			Status       struct {
-				Name string `json:"name"`
-				Code string `json:"code"`
-				Img  string `json:"img"`
-				Info string `json:"info"`
-			} `json:"status"`
+			DataPayment struct {
+				Created      string  `json:"created"`
+				Amount       float64 `json:"amount"`
+				PayTime      string  `json:"pay_time"`
+				PayTimeLimit string  `json:"pay_time_limit"`
+				QRCode       string  `json:"qrcode"`
+				Status       struct {
+					Name string `json:"name"`
+					Code string `json:"code"`
+					Img  string `json:"img"`
+				} `json:"status"`
+			} `json:"data_payment"`
 		} `json:"payment_method"`
 	} `json:"data"`
 }

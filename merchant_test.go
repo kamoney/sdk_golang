@@ -27,7 +27,7 @@ func TestListMerchant(t *testing.T) {
 	response, err := private.ListMerchant(kamoney_sdk_dtos.ListMerchantRequestParams{
 		Begin:  "",
 		End:    "",
-		Status: "PENDING",
+		Status: "CANCELED",
 		Search: "",
 	})
 	if err != nil {

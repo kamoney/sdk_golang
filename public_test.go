@@ -35,28 +35,28 @@ func TestMain(m *testing.M) {
 func TestServicesOrder(t *testing.T) {
 	response, err := public.ServicesOrder()
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestServicesMerchant(t *testing.T) {
 	response, err := public.ServicesMerchant()
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestServicesBuy(t *testing.T) {
 	response, err := public.ServicesBuy()
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestAccountRegister(t *testing.T) {
@@ -66,10 +66,10 @@ func TestAccountRegister(t *testing.T) {
 		Terms:         true,
 	})
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestAccountActive(t *testing.T) {
@@ -79,10 +79,10 @@ func TestAccountActive(t *testing.T) {
 		Password: "m1nh@s3nh@n0v@",
 	})
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestAccountRecovery(t *testing.T) {
@@ -90,104 +90,104 @@ func TestAccountRecovery(t *testing.T) {
 		Email: "immortal.g.tv@gmail.com",
 	})
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestAccountRecoveryConfirm(t *testing.T) {
 	response, err := public.AccountRecoveryConfirm(kamoney_sdk_dtos.AccountRecoveryConfirmRequestParams{
 		Email:    "immortal.g.tv@gmail.com",
-		Code:     324340,
-		Password: "m1nh@s3nh@n0v@",
+		Code:     188636,
+		Password: "7023346aA@",
 	})
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestUtilsBanks(t *testing.T) {
 	response, err := public.UtilsBanks()
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestUtilsNotification(t *testing.T) {
 	response, err := public.UtilsNotification()
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestUtilsCountry(t *testing.T) {
 	response, err := public.UtilsCountry()
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestUtilsState(t *testing.T) {
 	response, err := public.UtilsState(1)
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestUtilsCity(t *testing.T) {
 	response, err := public.UtilsCity(1, 19)
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestUtilsCurrency(t *testing.T) {
 	response, err := public.UtilsCurrency()
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestUtilsCurrencyNetwork(t *testing.T) {
 	response, err := public.UtilsCurrencyNetwork("")
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestUtilsFaq(t *testing.T) {
 	_, err := public.UtilsFaq()
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	// fmt.Println(response)
+	// t.Log(response)
 }
 
 func TestUtilsProduct(t *testing.T) {
 	response, err := public.UtilsProduct()
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestUtilsContact(t *testing.T) {
@@ -198,17 +198,17 @@ func TestUtilsContact(t *testing.T) {
 		Message: "Olá, só passando pra dizer Oi :D",
 	})
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestUtilsPixType(t *testing.T) {
 	response, err := public.UtilsPixType()
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }

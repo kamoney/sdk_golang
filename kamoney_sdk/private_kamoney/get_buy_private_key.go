@@ -11,7 +11,7 @@ import (
 )
 
 func (s *privateRequests) GetBuyPrivateKey(in kamoney_sdk_dtos.GetBuyPrivateKeyRequestParams, id string) (out kamoney_sdk_dtos.GetBuyPrivateKeyRequestResponse, err error) {
-	req, err := s.r.RequestHandler("POST", ENDPOINT_BUY_QR_CODE(id), in)
+	req, err := s.r.RequestHandler("GET", ENDPOINT_BUY_QR_CODE(id), in)
 	if err != nil {
 		log.Panicln("GBNQC 01: ", err.Error())
 		return

@@ -13,14 +13,14 @@ func TestListOrder(t *testing.T) {
 		Begin:  "",
 		End:    "",
 		Search: "OKM92006666",
-		Status: "PENDING",
+		Status: "CANCELED",
 	})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestGetOrderInfo(t *testing.T) {
@@ -29,20 +29,20 @@ func TestGetOrderInfo(t *testing.T) {
 	})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestListOrderReceipt(t *testing.T) {
 	response, err := private.ListOrderReceipt(kamoney_sdk_dtos.ListOrderReceiptRequestParams{})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestGetOrderReceiptDownload(t *testing.T) {
@@ -51,10 +51,10 @@ func TestGetOrderReceiptDownload(t *testing.T) {
 	})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestCreateOrder(t *testing.T) {
@@ -62,36 +62,36 @@ func TestCreateOrder(t *testing.T) {
 		Nonce:   fmt.Sprint(utility.GenNonce()),
 		Asset:   "LTC",
 		Network: "LTC",
-		PaymentSlips: []struct {
-			Barcode     string  `json:"barcode"`
-			Institution string  `json:"institution"`
-			Amount      float64 `json:"amount"`
-			DueDate     string  `json:"due_date"`
-		}{
-			{
-				Barcode:     "23793380296101222882356006333308191510000002000",
-				Institution: "Banco NuBank",
-				Amount:      100.50,
-				DueDate:     "2023-12-31",
-			},
-		},
-		// Pix: []struct {
-		// 	Type   string  `json:"type"`
-		// 	Key    string  `json:"key"`
-		// 	Amount float64 `json:"amount"`
+		// PaymentSlips: []struct {
+		// 	Barcode     string  `json:"barcode"`
+		// 	Institution string  `json:"institution"`
+		// 	Amount      float64 `json:"amount"`
+		// 	DueDate     string  `json:"due_date"`
 		// }{
 		// 	{
-		// 		Type:   "EMAIL",
-		// 		Key:    "igorasft@gmail.com",
-		// 		Amount: 100.50,
+		// 		Barcode:     "23793380296101222882356006333308191510000002000",
+		// 		Institution: "Banco NuBank",
+		// 		Amount:      100.50,
+		// 		DueDate:     "2023-12-31",
 		// 	},
 		// },
+		Pix: []struct {
+			Type   string  `json:"type"`
+			Key    string  `json:"key"`
+			Amount float64 `json:"amount"`
+		}{
+			{
+				Type:   "EMAIL",
+				Key:    "igorasft@gmail.com",
+				Amount: 100.50,
+			},
+		},
 		// DigitalProducts: []struct {
 		// 	ProductID int64 `json:"product_id"`
 		// 	Quantity  int64 `json:"quantity"`
 		// }{
 		// 	{
-		// 		ProductID: 50,
+		// 		ProductID: 138,
 		// 		Quantity:  2,
 		// 	},
 		// },

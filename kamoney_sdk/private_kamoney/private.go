@@ -140,9 +140,9 @@ type PrivateRequestsInterface interface {
 
 	CreateWithdraw(kamoney_sdk_dtos.CreateWithdrawRequestParams) (kamoney_sdk_dtos.CreateWithdrawRequestResponse, error)
 	ListWithdraw(kamoney_sdk_dtos.ListWithdrawRequestParams) (kamoney_sdk_dtos.ListWithdrawRequestResponse, error)
-	GetWithdrawInfo(kamoney_sdk_dtos.GetWithdrawInfoRequestParams) (kamoney_sdk_dtos.GetWithdrawInfoRequestResponse, error)
-	GetWithdrawReceipt(kamoney_sdk_dtos.GetWithdrawReceiptRequestParams) (kamoney_sdk_dtos.GetWithdrawReceiptRequestResponse, error)
-	GetWithdrawReceiptDownload(kamoney_sdk_dtos.GetWithdrawReceiptDownloadRequestParams) (kamoney_sdk_dtos.GetWithdrawReceiptDownloadRequestResponse, error)
+	GetWithdrawInfo(kamoney_sdk_dtos.GetWithdrawInfoRequestParams, string) (kamoney_sdk_dtos.GetWithdrawInfoRequestResponse, error)
+	GetWithdrawReceipt(kamoney_sdk_dtos.GetWithdrawReceiptRequestParams, string) (kamoney_sdk_dtos.GetWithdrawReceiptRequestResponse, error)
+	GetWithdrawReceiptDownload(kamoney_sdk_dtos.GetWithdrawReceiptDownloadRequestParams, string) (kamoney_sdk_dtos.GetWithdrawReceiptDownloadRequestResponse, error)
 
 	CreateOrder(kamoney_sdk_dtos.CreateOrderRequestParams) (kamoney_sdk_dtos.CreateOrderRequestResponse, error)
 	ListOrder(kamoney_sdk_dtos.ListOrderRequestParams) (kamoney_sdk_dtos.ListOrderRequestResponse, error)
@@ -152,8 +152,8 @@ type PrivateRequestsInterface interface {
 
 	ListBuy(kamoney_sdk_dtos.ListBuyRequestParams) (kamoney_sdk_dtos.ListBuyRequestResponse, error)
 	GetBuyInfo(kamoney_sdk_dtos.GetBuyInfoRequestParams, string) (kamoney_sdk_dtos.GetBuyInfoRequestResponse, error)
-	GetBuyNewQRCode(kamoney_sdk_dtos.GetBuyNewQRCodeRequestParams, string) (kamoney_sdk_dtos.GetBuyNewQRCodeRequestResponse, error)
-	GetBuyPrivateKey(kamoney_sdk_dtos.GetBuyPrivateKeyRequestParams, string) (kamoney_sdk_dtos.GetBuyPrivateKeyRequestResponse, error)
+	// GetBuyNewQRCode(kamoney_sdk_dtos.GetBuyNewQRCodeRequestParams, string) (kamoney_sdk_dtos.GetBuyNewQRCodeRequestResponse, error)
+	// GetBuyPrivateKey(kamoney_sdk_dtos.GetBuyPrivateKeyRequestParams, string) (kamoney_sdk_dtos.GetBuyPrivateKeyRequestResponse, error)
 	CreateBuy(kamoney_sdk_dtos.CreateBuyRequestParams) (kamoney_sdk_dtos.CreateBuyRequestResponse, error)
 
 	CreateMerchant(kamoney_sdk_dtos.CreateMerchantRequestParams) (kamoney_sdk_dtos.CreateMerchantRequestResponse, error)

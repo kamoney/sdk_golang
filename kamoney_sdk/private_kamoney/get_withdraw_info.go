@@ -10,8 +10,8 @@ import (
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
 )
 
-func (s *privateRequests) GetWithdrawInfo(in kamoney_sdk_dtos.GetWithdrawInfoRequestParams) (out kamoney_sdk_dtos.GetWithdrawInfoRequestResponse, err error) {
-	req, err := s.r.RequestHandler("GET", ENDPOINT_WITHDRAW_INFO(in.ID), in)
+func (s *privateRequests) GetWithdrawInfo(in kamoney_sdk_dtos.GetWithdrawInfoRequestParams, id string) (out kamoney_sdk_dtos.GetWithdrawInfoRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_WITHDRAW_INFO(id), in)
 	if err != nil {
 		log.Panicln("GWI 01: ", err.Error())
 		return
