@@ -1,8 +1,7 @@
 package kamoney_sdk_dtos
 
-type UpdateRecipientsRequestParams struct {
+type ChangeRecipientsRequestParams struct {
 	Nonce         string `json:"nonce"`
-	ID            int64  `json:"id"`
 	Type          int64  `json:"type"`
 	AccountType   string `json:"account_type"`
 	Bank          int64  `json:"bank"`
@@ -13,6 +12,6 @@ type UpdateRecipientsRequestParams struct {
 	Description   string `json:"description"`
 }
 
-type UpdateRecipientsRequestResponse struct {
+type ChangeRecipientsRequestResponse struct {
 	Common
 }

@@ -8,5 +8,5 @@ type GetOrderReceiptDownloadRequestResponse struct {
 	Common
 	Data struct {
 		Redirect string `json:"redirect"`
-	} `json:"data"`
+	} `json:"data,omitempty"`
 }

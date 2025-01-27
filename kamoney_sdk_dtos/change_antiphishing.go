@@ -1,15 +1,13 @@
 package kamoney_sdk_dtos
 
-type WalletExtractRequestParams struct {
-	Page   int64  `json:"page"`
-	Begin  string `json:"begin"`
-	End    string `json:"end"`
-	Search string `json:"search"`
-	Type   string `json:"type"`
-	Nonce  string `json:"nonce"`
+type ChangeAntiPhishingRequestParams struct {
+	Password string `json:"password"`
+	Phrase   string `json:"phrase"`
+	Tfa      int64  `json:"tfa"` //in case is active
+	Nonce    string `json:"nonce"`
 }
 
-type WalletExtractRequestResponse struct {
+type ChangeAntiPhishingRequestResponse struct {
 	Common
 	Data []struct {
 		Created         string  `json:"created"`

@@ -1,10 +1,10 @@
 package kamoney_sdk_dtos
 
-type AccountContactRequestParams struct {
+type ChangeAccountContactRequestParams struct {
 	Whatsapp string `json:"whatsapp"`
 	Telegram string `json:"telegram"`
 }
 
-type AccountContactRequestResponse struct {
+type ChangeAccountContactRequestResponse struct {
 	Common
 }

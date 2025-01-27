@@ -27,6 +27,10 @@ type RequestHandler struct {
 }
 
 func (s *privateRequests) mapToURLValues(m map[string]string) url.Values {
+	if m["nonce"] == "" {
+		m["nonce"] = fmt.Sprint(utility.GenNonce())
+	}
+
 	values := url.Values{}
 	for key, value := range m {
 		values.Add(key, value) // Adiciona os pares chave-valor
@@ -40,18 +44,26 @@ func (s *privateRequests) gerQueryString(obj interface{}) map[string]string {
 	typ := reflect.TypeOf(obj)
 	fmt.Println("Obj: ", obj)
 
+	// var setNonce bool
+
 	for i := 0; i < val.NumField(); i++ {
 		field := val.Field(i)
 		fieldType := typ.Field(i)
-		// fieldName := fieldType.Name
 
-		// fmt.Println(fieldType.Name, field.Kind())
+		if strings.Contains(fieldType.Tag.Get("json"), ",omitempty") {
+			if reflect.ValueOf(field.Interface()).IsZero() {
+				continue
+			}
+		}
+
+		parts := strings.Split(fieldType.Tag.Get("json"), ",omitempty")
+
 		if field.Kind() == reflect.Struct {
 			// Chamada recursiva para structs aninhadas
 			nestedFields := s.gerQueryString(field.Interface())
 			for _, v := range nestedFields {
 				// Adiciona as chaves da struct aninhada no map atual
-				result[strings.ToLower(fieldType.Tag.Get("json"))] = v
+				result[strings.ToLower(parts[0])] = v
 			}
 		} else if field.Kind() == reflect.Slice {
 			// Se o campo for um slice, iteramos sobre os elementos
@@ -59,18 +71,16 @@ func (s *privateRequests) gerQueryString(obj interface{}) map[string]string {
 				elem := field.Index(j).Interface()
 				nestedFields := s.gerQueryString(elem)
 				for k, v := range nestedFields {
-					result[fmt.Sprintf("%s%s", fieldType.Tag.Get("json"), k)] = v
+					result[fmt.Sprintf("%s%v%s", parts[0], j, k)] = v
+					fmt.Println(parts[0], k, v)
 				}
 			}
 		} else {
-			// Para campos simples (não structs nem slices)
-			result[fieldType.Tag.Get("json")] = fmt.Sprintf("%v", field.Interface())
+			result[parts[0]] = fmt.Sprintf("%v", field.Interface())
 		}
 	}
 
-	result["nonce"] = fmt.Sprint(utility.GenNonce())
 	fmt.Println(result)
-
 	return result
 }
 

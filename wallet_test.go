@@ -19,8 +19,12 @@ func TestListWallet(t *testing.T) {
 
 // Filters is not working
 func TestWalletExtract(t *testing.T) {
-	response, err := private.WalletExtract(kamoney_sdk_dtos.WalletExtractRequestParams{
+	response, err := private.GetWalletExtract(kamoney_sdk_dtos.GetWalletExtractRequestParams{
 		Search: "R$",
+		Begin:  "",
+		End:    "",
+		Type:   "1",
+		Page:   1,
 	})
 
 	if err != nil {
@@ -80,7 +84,6 @@ func TestGetWithdrawReceipt(t *testing.T) {
 	fmt.Println(response)
 }
 
-// With no data return array, and if theres data ? will return []struct or a struct ? how to handle ?
 func TestGetWithdrawReceiptDownload(t *testing.T) {
 	response, err := private.GetWithdrawReceiptDownload(kamoney_sdk_dtos.GetWithdrawReceiptDownloadRequestParams{
 		ID:       "8WWrwErRURkCviDdO1E0CibEk7uC1gbpuLUkgT0Ga0H",

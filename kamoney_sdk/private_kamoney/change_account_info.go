@@ -2,14 +2,17 @@ package private_kamoney
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
+	"github.com/kamoney/sdk_golang/utility"
 )
 
 func (s *privateRequests) ChangeAccountInfo(in kamoney_sdk_dtos.ChangeAccountInfoRequestParams) (out kamoney_sdk_dtos.ChangeAccountInfoRequestResponse, err error) {
+	in.Nonce = fmt.Sprint(utility.GenNonce())
 	req, err := s.r.RequestHandler("POST", ENDPOINT_ACCOUNT_INFO, in)
 	if err != nil {
 		log.Panicln("CAI 01: ", err.Error())

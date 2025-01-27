@@ -8,14 +8,12 @@ import (
 	"net/http"
 
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
-	"github.com/kamoney/sdk_golang/utility"
 )
 
-func (s *privateRequests) SecurityAction(in kamoney_sdk_dtos.SecurityActionRequestParams) (out kamoney_sdk_dtos.SecurityActionRequestResponse, err error) {
-	in.Nonce = fmt.Sprint(utility.GenNonce())
-	req, err := s.r.RequestHandler("POST", ENDPOINT_SECURITY_ACTION, in)
+func (s *privateRequests) GetLevelInfo(in kamoney_sdk_dtos.GetLevelInfoRequestParams) (out kamoney_sdk_dtos.GetLevelInfoRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_ACCOUNT_LEVEL, in)
 	if err != nil {
-		log.Panicln("CE 01: ", err.Error())
+		log.Panicln("GLI 01: ", err.Error())
 		return
 	}
 
@@ -27,20 +25,20 @@ func (s *privateRequests) SecurityAction(in kamoney_sdk_dtos.SecurityActionReque
 
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Panicln("CE 02: ", err.Error())
+		log.Panicln("GLI 02: ", err.Error())
 		return
 	}
 	defer resp.Body.Close()
 
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Panicln("CE 03: ", err.Error())
+		log.Panicln("GLI 03: ", err.Error())
 		return
 	}
 	fmt.Println(string(bodyBytes))
 	err = json.Unmarshal(bodyBytes, &out)
 	if err != nil {
-		log.Println("CE 04: ", err.Error())
+		log.Println("GLI 04: ", err.Error())
 		return
 	}
 

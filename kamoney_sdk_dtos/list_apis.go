@@ -1,10 +1,10 @@
 package kamoney_sdk_dtos
 
-type ListAPIsRequestParams struct {
+type ListAPIRequestParams struct {
 	Page string `json:"page,omitempty"`
 }
 
-type ListAPIsRequestResponse struct {
+type ListAPIRequestResponse struct {
 	Common
 	Data []struct {
 		ID              int64  `json:"id"`

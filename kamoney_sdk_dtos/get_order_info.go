@@ -7,12 +7,12 @@ type GetOrderInfoRequestParams struct {
 type GetOrderInfoRequestResponse struct {
 	Common
 	Data struct {
-		ID       string `json:"id"`
-		Created  string `json:"created"`
-		Amount   int    `json:"amount"`
-		Quantity string `json:"quantity"`
-		URI      string `json:"uri"`
-		Received int    `json:"received"`
+		ID       string  `json:"id"`
+		Created  string  `json:"created"`
+		Amount   float64 `json:"amount"`
+		Quantity string  `json:"quantity"`
+		URI      string  `json:"uri"`
+		Received int64   `json:"received"`
 		Asset    struct {
 			Asset string `json:"asset"`
 			Image string `json:"image"`

@@ -1,9 +1,9 @@
 package kamoney_sdk_dtos
 
-type ViewTfsRequestParams struct {
+type GetTFSRequestParams struct {
 }
 
-type ViewTfsRequestResponse struct {
+type GetTFSRequestResponse struct {
 	Common
 	Data struct {
 		Enabled bool   `json:"enabled"`

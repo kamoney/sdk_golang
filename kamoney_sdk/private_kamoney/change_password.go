@@ -8,9 +8,11 @@ import (
 	"net/http"
 
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
+	"github.com/kamoney/sdk_golang/utility"
 )
 
 func (s *privateRequests) ChangePassword(in kamoney_sdk_dtos.ChangePasswordRequestParams) (out kamoney_sdk_dtos.ChangePasswordRequestResponse, err error) {
+	in.Nonce = fmt.Sprint(utility.GenNonce())
 	req, err := s.r.RequestHandler("POST", ENDPOINT_SECURITY_PASSWORD, in)
 	if err != nil {
 		log.Panicln("CE 01: ", err.Error())

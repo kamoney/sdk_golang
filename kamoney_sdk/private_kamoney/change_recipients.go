@@ -11,11 +11,11 @@ import (
 	"github.com/kamoney/sdk_golang/utility"
 )
 
-func (s *privateRequests) SecurityAction(in kamoney_sdk_dtos.SecurityActionRequestParams) (out kamoney_sdk_dtos.SecurityActionRequestResponse, err error) {
+func (s *privateRequests) ChangeRecipients(in kamoney_sdk_dtos.ChangeRecipientsRequestParams, id int64) (out kamoney_sdk_dtos.ChangeRecipientsRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
-	req, err := s.r.RequestHandler("POST", ENDPOINT_SECURITY_ACTION, in)
+	req, err := s.r.RequestHandler("POST", ENDPOINT_ACCOUNT_RECIPIENTS_ID(id), in)
 	if err != nil {
-		log.Panicln("CE 01: ", err.Error())
+		log.Panicln("CR 01: ", err.Error())
 		return
 	}
 
@@ -27,20 +27,20 @@ func (s *privateRequests) SecurityAction(in kamoney_sdk_dtos.SecurityActionReque
 
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Panicln("CE 02: ", err.Error())
+		log.Panicln("CR 02: ", err.Error())
 		return
 	}
 	defer resp.Body.Close()
 
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Panicln("CE 03: ", err.Error())
+		log.Panicln("CR 03: ", err.Error())
 		return
 	}
 	fmt.Println(string(bodyBytes))
 	err = json.Unmarshal(bodyBytes, &out)
 	if err != nil {
-		log.Println("CE 04: ", err.Error())
+		log.Println("CR 04: ", err.Error())
 		return
 	}
 

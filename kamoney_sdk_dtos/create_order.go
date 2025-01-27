@@ -1,15 +1,18 @@
 package kamoney_sdk_dtos
 
 type CreateOrderRequestParams struct {
-	Nonce        string `json:"nonce"`
+	Nonce        string `json:"nonce,omitempty"`
 	Asset        string `json:"asset"`
 	Network      string `json:"network"`
+	Coupon       string `json:"coupon,omitempty"`
 	PaymentSlips []struct {
 		Barcode     string  `json:"barcode"`
 		Institution string  `json:"institution"`
 		Amount      float64 `json:"amount"`
 		DueDate     string  `json:"due_date"`
-	} `json:"payment_slips"`
+		// PersonalID  string  `json:"personal_id"`
+		// Owner       string  `json:"owner"`
+	} `json:"payment_slips,omitempty"`
 	DirectTransfers []struct {
 		AccountType   string  `json:"account_type"`
 		BankID        int64   `json:"bank_id"`
@@ -18,16 +21,16 @@ type CreateOrderRequestParams struct {
 		PersonalID    string  `json:"personal_id"`
 		Owner         string  `json:"owner"`
 		Amount        float64 `json:"amount"`
-	} `json:"direct_transfers"`
+	} `json:"direct_transfers,omitempty"`
 	DigitalProducts []struct {
 		ProductID int64 `json:"product_id"`
 		Quantity  int64 `json:"quantity"`
-	} `json:"digital_products"`
+	} `json:"digital_products,omitempty"`
 	Pix []struct {
 		Type   string  `json:"type"`
 		Key    string  `json:"key"`
 		Amount float64 `json:"amount"`
-	} `json:"pix"`
+	} `json:"pix,omitempty"`
 }
 
 type CreateOrderRequestResponse struct {

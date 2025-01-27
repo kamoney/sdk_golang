@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
+	"github.com/kamoney/sdk_golang/utility"
 )
 
 func TestGetAccountInfo(t *testing.T) {
@@ -41,16 +42,15 @@ func TestGetAccountLocality(t *testing.T) {
 	fmt.Println(response)
 }
 
-/* REDO: Invalid State param */
-func TestAccountLocality(t *testing.T) {
-	response, err := private.AccountLocality(kamoney_sdk_dtos.AccountLocalityRequestParams{
+func TestChangeAccountLocality(t *testing.T) {
+	response, err := private.ChangeAccountLocality(kamoney_sdk_dtos.ChangeAccountLocalityRequestParams{
 		Zipcode:      "35430232",
 		Street:       "Av. Dom Bosco",
 		Number:       490,
 		Complement:   "201",
 		Neighborhood: "Palmeiras",
-		City:         79,
-		State:        1,
+		City:         3591,
+		Nonce:        fmt.Sprint(utility.GenNonce()),
 	})
 
 	if err != nil {
@@ -60,8 +60,9 @@ func TestAccountLocality(t *testing.T) {
 	fmt.Println(response)
 }
 
-func TestAccountContact(t *testing.T) {
-	response, err := private.AccountContact(kamoney_sdk_dtos.AccountContactRequestParams{
+/*Needs Bearer Token*/
+func TestChangeAccountContact(t *testing.T) {
+	response, err := private.ChangeAccountContact(kamoney_sdk_dtos.ChangeAccountContactRequestParams{
 		Whatsapp: "986621962",
 		Telegram: "@immortal",
 	})
@@ -75,9 +76,9 @@ func TestAccountContact(t *testing.T) {
 
 func TestGetAccountHistory(t *testing.T) {
 	response, err := private.GetAccountHistory(kamoney_sdk_dtos.GetAccountHistoryRequestParams{
-		Page: 1,
-		// Date: ,
-
+		Page:   1,
+		Search: "PTS",
+		Date:   "",
 	})
 
 	if err != nil {
@@ -110,7 +111,7 @@ func TestUpdateAccountNotificationReadAll(t *testing.T) {
 
 func TestUpdateAccountNotificationReadId(t *testing.T) {
 	response, err := private.UpdateAccountNotificationReadId(kamoney_sdk_dtos.UpdateAccountNotificationReadIdRequestParams{
-		ID: "2936",
+		ID: "2937",
 	})
 
 	if err != nil {
@@ -231,7 +232,7 @@ func TestCreateRecipients(t *testing.T) {
 
 func TestDeleteRecipients(t *testing.T) {
 	response, err := private.DeleteRecipients(kamoney_sdk_dtos.DeleteRecipientsRequestParams{
-		ID: 2908,
+		ID: 2910,
 	})
 
 	if err != nil {
@@ -241,10 +242,8 @@ func TestDeleteRecipients(t *testing.T) {
 	fmt.Println(response)
 }
 
-// endpoint still Exists ? ERR 400
 func TestUpdateRecipients(t *testing.T) {
-	response, err := private.UpdateRecipients(kamoney_sdk_dtos.UpdateRecipientsRequestParams{
-		ID:            2908,
+	response, err := private.ChangeRecipients(kamoney_sdk_dtos.ChangeRecipientsRequestParams{
 		Type:          1,
 		AccountType:   "CC",
 		Bank:          1,
@@ -253,7 +252,7 @@ func TestUpdateRecipients(t *testing.T) {
 		Owner:         "João do Fulano",
 		PersonalID:    "05650090602",
 		Description:   "Test Update do SDK",
-	})
+	}, 2909)
 
 	if err != nil {
 		panic(err)

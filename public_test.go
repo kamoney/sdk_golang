@@ -146,7 +146,7 @@ func TestUtilsState(t *testing.T) {
 }
 
 func TestUtilsCity(t *testing.T) {
-	response, err := public.UtilsCity(1, 1)
+	response, err := public.UtilsCity(1, 19)
 	if err != nil {
 		panic(err)
 	}

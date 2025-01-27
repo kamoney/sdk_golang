@@ -1,6 +1,8 @@
 package utility
 
-import "time"
+import (
+	"time"
+)
 
 func GenNonce() int64 {
 	mt := time.Now().UnixNano()

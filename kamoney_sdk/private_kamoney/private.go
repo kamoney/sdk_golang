@@ -61,6 +61,27 @@ var (
 		return fmt.Sprintf("private/order/receipt/%v", filename)
 	}
 
+	ENDPOINT_BUY      = "private/buy"
+	ENDPOINT_BUY_INFO = func(id string) string {
+		return fmt.Sprintf("private/buy/%v", id)
+	}
+	ENDPOINT_BUY_QR_CODE = func(id string) string {
+		return fmt.Sprintf("private/buy/%v/payment_method/reset", id)
+	}
+	ENDPOINT_BUY_PRIVATE = func(id string) string {
+		return fmt.Sprintf("private/buy/%v/private", id)
+	}
+
+	ENDPOINT_MERCHANT      = "private/merchant"
+	ENDPOINT_MERCHANT_INFO = func(id string) string {
+		return fmt.Sprintf("private/merchant/%v", id)
+	}
+
+	ENDPOINT_PAYMENT_LINK        = "private/merchant/paymentlink"
+	ENDPOINT_PAYMENT_LINK_DELETE = func(id string) string {
+		return fmt.Sprintf("private/merchant/paymentlink/%v", id)
+	}
+
 // ENDPOINT_AUTH              = "public/auth"
 //
 //	ENDPOINT_UTILS_COUNTRY_STATE = func(id int64) string {
@@ -75,13 +96,13 @@ type PrivateRequestsInterface interface {
 	ListRecipients(kamoney_sdk_dtos.ListRecipientsRequestParams) (kamoney_sdk_dtos.ListRecipientsRequestResponse, error)
 	CreateRecipients(kamoney_sdk_dtos.CreateRecipientsRequestParams) (kamoney_sdk_dtos.CreateRecipientsRequestResponse, error)
 	DeleteRecipients(kamoney_sdk_dtos.DeleteRecipientsRequestParams) (kamoney_sdk_dtos.DeleteRecipientsRequestResponse, error)
-	UpdateRecipients(kamoney_sdk_dtos.UpdateRecipientsRequestParams) (kamoney_sdk_dtos.UpdateRecipientsRequestResponse, error)
+	ChangeRecipients(kamoney_sdk_dtos.ChangeRecipientsRequestParams, int64) (kamoney_sdk_dtos.ChangeRecipientsRequestResponse, error)
 	GetRecipientInfo(kamoney_sdk_dtos.GetRecipientInfoRequestParams) (kamoney_sdk_dtos.GetRecipientInfoRequestResponse, error)
 
 	GetAccountLocality(kamoney_sdk_dtos.GetAccountLocalityRequestParams) (kamoney_sdk_dtos.GetAccountLocalityRequestResponse, error)
-	AccountLocality(kamoney_sdk_dtos.AccountLocalityRequestParams) (kamoney_sdk_dtos.AccountLocalityRequestResponse, error)
+	ChangeAccountLocality(kamoney_sdk_dtos.ChangeAccountLocalityRequestParams) (kamoney_sdk_dtos.ChangeAccountLocalityRequestResponse, error)
 
-	AccountContact(kamoney_sdk_dtos.AccountContactRequestParams) (kamoney_sdk_dtos.AccountContactRequestResponse, error)
+	ChangeAccountContact(kamoney_sdk_dtos.ChangeAccountContactRequestParams) (kamoney_sdk_dtos.ChangeAccountContactRequestResponse, error)
 	GetAccountHistory(kamoney_sdk_dtos.GetAccountHistoryRequestParams) (kamoney_sdk_dtos.GetAccountHistoryRequestResponse, error)
 	GetAccountNotification(kamoney_sdk_dtos.GetAccountNotificationRequestParams) (kamoney_sdk_dtos.GetAccountNotificationRequestResponse, error)
 	UpdateAccountNotificationReadAll(kamoney_sdk_dtos.UpdateAccountNotificationReadAllRequestParams) (kamoney_sdk_dtos.UpdateAccountNotificationReadAllRequestResponse, error)
@@ -98,20 +119,21 @@ type PrivateRequestsInterface interface {
 	GetReward(kamoney_sdk_dtos.GetRewardRequestParams) (kamoney_sdk_dtos.GetRewardRequestResponse, error)
 
 	ListWallet(kamoney_sdk_dtos.ListWalletRequestParams) (kamoney_sdk_dtos.ListWalletRequestResponse, error)
-	WalletExtract(kamoney_sdk_dtos.WalletExtractRequestParams) (kamoney_sdk_dtos.WalletExtractRequestResponse, error)
-	AntiPhishing(kamoney_sdk_dtos.AntiPhishingRequestParams) (kamoney_sdk_dtos.AntiPhishingRequestResponse, error)
+	GetWalletExtract(kamoney_sdk_dtos.GetWalletExtractRequestParams) (kamoney_sdk_dtos.GetWalletExtractRequestResponse, error)
+	ChangeAntiPhishing(kamoney_sdk_dtos.ChangeAntiPhishingRequestParams) (kamoney_sdk_dtos.ChangeAntiPhishingRequestResponse, error)
 	ViewAntiPhishing(kamoney_sdk_dtos.ViewAntiPhishingRequestParams) (kamoney_sdk_dtos.ViewAntiPhishingRequestResponse, error)
-	ViewTfs(kamoney_sdk_dtos.ViewTfsRequestParams) (kamoney_sdk_dtos.ViewTfsRequestResponse, error)
-	CreateTfs(kamoney_sdk_dtos.CreateTfsRequestParams) (kamoney_sdk_dtos.CreateTfsRequestResponse, error)
-	ChangeEmail(kamoney_sdk_dtos.ChangeEmailRequestParams) (kamoney_sdk_dtos.ChangeEmailRequestResponse, error)
-	ChangePassword(kamoney_sdk_dtos.ChangePasswordRequestParams) (kamoney_sdk_dtos.ChangePasswordRequestResponse, error)
-	SecurityAction(kamoney_sdk_dtos.SecurityActionRequestParams) (kamoney_sdk_dtos.SecurityActionRequestResponse, error)
-	CancelAccount(kamoney_sdk_dtos.CancelAccountRequestParams) (kamoney_sdk_dtos.CancelAccountRequestResponse, error)
 
-	CreateAPI(kamoney_sdk_dtos.CreateAPIRequestParams) (kamoney_sdk_dtos.CreateAPIRequestResponse, error)
-	ListAPIs(kamoney_sdk_dtos.ListAPIsRequestParams) (kamoney_sdk_dtos.ListAPIsRequestResponse, error)
-	DeleteAPI(kamoney_sdk_dtos.DeleteAPIRequestParams) (kamoney_sdk_dtos.DeleteAPIRequestResponse, error)
-	GetAPISecret(kamoney_sdk_dtos.GetAPISecretRequestParams) (kamoney_sdk_dtos.GetAPISecretRequestResponse, error)
+	// GetTFS(kamoney_sdk_dtos.GetTFSRequestParams) (kamoney_sdk_dtos.GetTFSRequestResponse, error)
+	// CreateTfs(kamoney_sdk_dtos.CreateTfsRequestParams) (kamoney_sdk_dtos.CreateTfsRequestResponse, error)
+	// ChangeEmail(kamoney_sdk_dtos.ChangeEmailRequestParams) (kamoney_sdk_dtos.ChangeEmailRequestResponse, error)
+	// ChangePassword(kamoney_sdk_dtos.ChangePasswordRequestParams) (kamoney_sdk_dtos.ChangePasswordRequestResponse, error)
+	// SecurityAction(kamoney_sdk_dtos.SecurityActionRequestParams) (kamoney_sdk_dtos.SecurityActionRequestResponse, error)
+	// CancelAccount(kamoney_sdk_dtos.CancelAccountRequestParams) (kamoney_sdk_dtos.CancelAccountRequestResponse, error)
+
+	// CreateAPI(kamoney_sdk_dtos.CreateAPIRequestParams) (kamoney_sdk_dtos.CreateAPIRequestResponse, error)
+	// ListAPI(kamoney_sdk_dtos.ListAPIRequestParams) (kamoney_sdk_dtos.ListAPIRequestResponse, error)
+	// DeleteAPI(kamoney_sdk_dtos.DeleteAPIRequestParams) (kamoney_sdk_dtos.DeleteAPIRequestResponse, error)
+	// GetAPISecret(kamoney_sdk_dtos.GetAPISecretRequestParams) (kamoney_sdk_dtos.GetAPISecretRequestResponse, error)
 
 	CreateWithdraw(kamoney_sdk_dtos.CreateWithdrawRequestParams) (kamoney_sdk_dtos.CreateWithdrawRequestResponse, error)
 	ListWithdraw(kamoney_sdk_dtos.ListWithdrawRequestParams) (kamoney_sdk_dtos.ListWithdrawRequestResponse, error)
@@ -124,6 +146,20 @@ type PrivateRequestsInterface interface {
 	GetOrderInfo(kamoney_sdk_dtos.GetOrderInfoRequestParams) (kamoney_sdk_dtos.GetOrderInfoRequestResponse, error)
 	ListOrderReceipt(kamoney_sdk_dtos.ListOrderReceiptRequestParams) (kamoney_sdk_dtos.ListOrderReceiptRequestResponse, error)
 	GetOrderReceiptDownload(kamoney_sdk_dtos.GetOrderReceiptDownloadRequestParams) (kamoney_sdk_dtos.GetOrderReceiptDownloadRequestResponse, error)
+
+	ListBuy(kamoney_sdk_dtos.ListBuyRequestParams) (kamoney_sdk_dtos.ListBuyRequestResponse, error)
+	GetBuyInfo(kamoney_sdk_dtos.GetBuyInfoRequestParams, string) (kamoney_sdk_dtos.GetBuyInfoRequestResponse, error)
+	GetBuyNewQRCode(kamoney_sdk_dtos.GetBuyNewQRCodeRequestParams, string) (kamoney_sdk_dtos.GetBuyNewQRCodeRequestResponse, error)
+	GetBuyPrivateKey(kamoney_sdk_dtos.GetBuyPrivateKeyRequestParams, string) (kamoney_sdk_dtos.GetBuyPrivateKeyRequestResponse, error)
+	CreateBuy(kamoney_sdk_dtos.CreateBuyRequestParams) (kamoney_sdk_dtos.CreateBuyRequestResponse, error)
+
+	CreateMerchant(kamoney_sdk_dtos.CreateMerchantRequestParams) (kamoney_sdk_dtos.CreateMerchantRequestResponse, error)
+	ListMerchant(kamoney_sdk_dtos.ListMerchantRequestParams) (kamoney_sdk_dtos.ListMerchantRequestResponse, error)
+	GetMerchantInfo(kamoney_sdk_dtos.GetMerchantInfoRequestParams, string) (kamoney_sdk_dtos.GetMerchantInfoRequestResponse, error)
+
+	CreatePaymentLink(kamoney_sdk_dtos.CreatePaymentLinkRequestParams) (kamoney_sdk_dtos.CreatePaymentLinkRequestResponse, error)
+	ListPaymentLink(kamoney_sdk_dtos.ListPaymentLinkRequestParams) (kamoney_sdk_dtos.ListPaymentLinkRequestResponse, error)
+	DeletePaymentLink(kamoney_sdk_dtos.DeletePaymentLinkRequestParams, int64) (kamoney_sdk_dtos.DeletePaymentLinkRequestResponse, error)
 }
 
 type privateRequests struct {

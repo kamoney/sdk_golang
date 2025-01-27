@@ -10,10 +10,10 @@ import (
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
 )
 
-func (s *privateRequests) GetLevelInfo(in kamoney_sdk_dtos.GetLevelInfoRequestParams) (out kamoney_sdk_dtos.GetLevelInfoRequestResponse, err error) {
-	req, err := s.r.RequestHandler("GET", ENDPOINT_ACCOUNT_LEVEL, in)
+func (s *privateRequests) ListBuy(in kamoney_sdk_dtos.ListBuyRequestParams) (out kamoney_sdk_dtos.ListBuyRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_BUY, in)
 	if err != nil {
-		log.Panicln("GSLB 01: ", err.Error())
+		log.Panicln("LO 01: ", err.Error())
 		return
 	}
 
@@ -25,20 +25,20 @@ func (s *privateRequests) GetLevelInfo(in kamoney_sdk_dtos.GetLevelInfoRequestPa
 
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Panicln("GSLB 02: ", err.Error())
+		log.Panicln("LO 02: ", err.Error())
 		return
 	}
 	defer resp.Body.Close()
 
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Panicln("GSLB 03: ", err.Error())
+		log.Panicln("LO 03: ", err.Error())
 		return
 	}
 	fmt.Println(string(bodyBytes))
 	err = json.Unmarshal(bodyBytes, &out)
 	if err != nil {
-		log.Println("GSLB 04: ", err.Error())
+		log.Println("LO 04: ", err.Error())
 		return
 	}
 

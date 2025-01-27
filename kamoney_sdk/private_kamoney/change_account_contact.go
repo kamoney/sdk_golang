@@ -2,7 +2,6 @@ package private_kamoney
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -10,10 +9,10 @@ import (
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
 )
 
-func (s *privateRequests) ListAPI(in kamoney_sdk_dtos.ListAPIRequestParams) (out kamoney_sdk_dtos.ListAPIRequestResponse, err error) {
-	req, err := s.r.RequestHandler("GET", ENDPOINT_SECURITY_API, in)
+func (s *privateRequests) ChangeAccountContact(in kamoney_sdk_dtos.ChangeAccountContactRequestParams) (out kamoney_sdk_dtos.ChangeAccountContactRequestResponse, err error) {
+	req, err := s.r.RequestHandler("POST", ENDPOINT_ACCOUNT_CONTACT, in)
 	if err != nil {
-		log.Panicln("CA 01: ", err.Error())
+		log.Panicln("AC 01: ", err.Error())
 		return
 	}
 
@@ -24,20 +23,20 @@ func (s *privateRequests) ListAPI(in kamoney_sdk_dtos.ListAPIRequestParams) (out
 
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Panicln("CA 02: ", err.Error())
+		log.Panicln("AC 02: ", err.Error())
 		return
 	}
 	defer resp.Body.Close()
 
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Panicln("CA 03: ", err.Error())
+		log.Panicln("AC 03: ", err.Error())
 		return
 	}
-	fmt.Println(string(bodyBytes))
+	// fmt.Println(bodyBytes)
 	err = json.Unmarshal(bodyBytes, &out)
 	if err != nil {
-		log.Println("CA 04: ", err.Error())
+		log.Println("AC 04: ", err.Error())
 		return
 	}
 
