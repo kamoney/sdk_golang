@@ -16,14 +16,14 @@ import(
 
 
 func main() {
- public_ep := public.NewPublicRequests("email", "pass", "", "secret")
+ public_ep := public.NewPublicRequests("email", "pass", "public", "secret")
  response, err := public_ep.ServicesOrder()
  if err != nil {
   panic(err)
  }
  fmt.Println(response)
 
- private_ep := private.NewPrivateRequests("email", "pass", "", "secret")
+ private_ep := private.NewPrivateRequests("email", "pass", "public", "secret")
  response2, err2 := private_ep.GetAccountInfo(kamoney_sdk_dtos.ChangeAccountInfoRequestParams{})
  if err2 != nil {
   panic(err2)
