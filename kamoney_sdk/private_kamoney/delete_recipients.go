@@ -10,8 +10,8 @@ import (
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
 )
 
-func (s *privateRequests) DeleteRecipients(in kamoney_sdk_dtos.DeleteRecipientsRequestParams) (out kamoney_sdk_dtos.DeleteRecipientsRequestResponse, err error) {
-	req, err := s.r.RequestHandler("DELETE", ENDPOINT_ACCOUNT_RECIPIENTS_ID(in.ID), in)
+func (s *privateRequests) DeleteRecipients(in kamoney_sdk_dtos.DeleteRecipientsRequestParams, id string) (out kamoney_sdk_dtos.DeleteRecipientsRequestResponse, err error) {
+	req, err := s.r.RequestHandler("DELETE", ENDPOINT_ACCOUNT_RECIPIENTS_ID(id), in)
 	if err != nil {
 		log.Panicln("DR 01: ", err.Error())
 		return

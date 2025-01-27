@@ -7,11 +7,14 @@ import (
 )
 
 var (
-	ENDPOINT_ACCOUNT_INFO                     = "private/account"
-	ENDPOINT_ACCOUNT_LOCALITY                 = "private/account/locality"
-	ENDPOINT_ACCOUNT_CONTACT                  = "private/account/contact"
-	ENDPOINT_ACCOUNT_HISTORY                  = "private/account/history"
-	ENDPOINT_ACCOUNT_NOTIFICATION             = "private/account/notification"
+	ENDPOINT_ACCOUNT_INFO            = "private/account"
+	ENDPOINT_ACCOUNT_LOCALITY        = "private/account/locality"
+	ENDPOINT_ACCOUNT_CONTACT         = "private/account/contact"
+	ENDPOINT_ACCOUNT_HISTORY         = "private/account/history"
+	ENDPOINT_ACCOUNT_NOTIFICATION    = "private/account/notification"
+	ENDPOINT_ACCOUNT_NOTIFICATION_ID = func(id string) string {
+		return fmt.Sprintf("private/account/notification/%v", id)
+	}
 	ENDPOINT_ACCOUNT_KYC                      = "private/account/kyc"
 	ENDPOINT_ACCOUNT_SERVICES_LIMITS_ORDER    = "private/account/services/order"
 	ENDPOINT_ACCOUNT_SERVICES_LIMITS_MERCHANT = "private/account/services/merchant"
@@ -21,7 +24,7 @@ var (
 	ENDPOINT_ACCOUNT_FEE                      = "private/account/fee"
 	ENDPOINT_ACCOUNT_REWARD                   = "private/account/reward"
 	ENDPOINT_ACCOUNT_RECIPIENTS               = "private/account/recipients"
-	ENDPOINT_ACCOUNT_RECIPIENTS_ID            = func(id int64) string {
+	ENDPOINT_ACCOUNT_RECIPIENTS_ID            = func(id string) string {
 		return fmt.Sprintf("private/account/recipients/%v", id)
 	}
 
@@ -95,9 +98,9 @@ type PrivateRequestsInterface interface {
 
 	ListRecipients(kamoney_sdk_dtos.ListRecipientsRequestParams) (kamoney_sdk_dtos.ListRecipientsRequestResponse, error)
 	CreateRecipients(kamoney_sdk_dtos.CreateRecipientsRequestParams) (kamoney_sdk_dtos.CreateRecipientsRequestResponse, error)
-	DeleteRecipients(kamoney_sdk_dtos.DeleteRecipientsRequestParams) (kamoney_sdk_dtos.DeleteRecipientsRequestResponse, error)
-	ChangeRecipients(kamoney_sdk_dtos.ChangeRecipientsRequestParams, int64) (kamoney_sdk_dtos.ChangeRecipientsRequestResponse, error)
-	GetRecipientInfo(kamoney_sdk_dtos.GetRecipientInfoRequestParams) (kamoney_sdk_dtos.GetRecipientInfoRequestResponse, error)
+	DeleteRecipients(kamoney_sdk_dtos.DeleteRecipientsRequestParams, string) (kamoney_sdk_dtos.DeleteRecipientsRequestResponse, error)
+	ChangeRecipients(kamoney_sdk_dtos.ChangeRecipientsRequestParams, string) (kamoney_sdk_dtos.ChangeRecipientsRequestResponse, error)
+	GetRecipientInfo(kamoney_sdk_dtos.GetRecipientInfoRequestParams, string) (kamoney_sdk_dtos.GetRecipientInfoRequestResponse, error)
 
 	GetAccountLocality(kamoney_sdk_dtos.GetAccountLocalityRequestParams) (kamoney_sdk_dtos.GetAccountLocalityRequestResponse, error)
 	ChangeAccountLocality(kamoney_sdk_dtos.ChangeAccountLocalityRequestParams) (kamoney_sdk_dtos.ChangeAccountLocalityRequestResponse, error)
@@ -106,7 +109,7 @@ type PrivateRequestsInterface interface {
 	GetAccountHistory(kamoney_sdk_dtos.GetAccountHistoryRequestParams) (kamoney_sdk_dtos.GetAccountHistoryRequestResponse, error)
 	GetAccountNotification(kamoney_sdk_dtos.GetAccountNotificationRequestParams) (kamoney_sdk_dtos.GetAccountNotificationRequestResponse, error)
 	UpdateAccountNotificationReadAll(kamoney_sdk_dtos.UpdateAccountNotificationReadAllRequestParams) (kamoney_sdk_dtos.UpdateAccountNotificationReadAllRequestResponse, error)
-	UpdateAccountNotificationReadId(kamoney_sdk_dtos.UpdateAccountNotificationReadIdRequestParams) (kamoney_sdk_dtos.UpdateAccountNotificationReadIdRequestResponse, error)
+	UpdateAccountNotificationReadId(kamoney_sdk_dtos.UpdateAccountNotificationReadIdRequestParams, string) (kamoney_sdk_dtos.UpdateAccountNotificationReadIdRequestResponse, error)
 	GetAccountKyc(kamoney_sdk_dtos.GetAccountKycRequestParams) (kamoney_sdk_dtos.GetAccountKycRequestResponse, error)
 
 	GetServicesLimitsOrder(kamoney_sdk_dtos.GetServicesLimitsOrderRequestParams) (kamoney_sdk_dtos.GetServicesLimitsOrderRequestResponse, error)

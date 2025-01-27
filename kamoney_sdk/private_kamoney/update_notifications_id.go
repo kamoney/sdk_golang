@@ -10,9 +10,8 @@ import (
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
 )
 
-func (s *privateRequests) UpdateAccountNotificationReadId(in kamoney_sdk_dtos.UpdateAccountNotificationReadIdRequestParams) (out kamoney_sdk_dtos.UpdateAccountNotificationReadIdRequestResponse, err error) {
-
-	req, err := s.r.RequestHandler("PUT", ENDPOINT_ACCOUNT_NOTIFICATION+"/"+in.ID, nil)
+func (s *privateRequests) UpdateAccountNotificationReadId(in kamoney_sdk_dtos.UpdateAccountNotificationReadIdRequestParams, id string) (out kamoney_sdk_dtos.UpdateAccountNotificationReadIdRequestResponse, err error) {
+	req, err := s.r.RequestHandler("PUT", ENDPOINT_ACCOUNT_NOTIFICATION_ID(id), nil)
 	if err != nil {
 		log.Panicln("UANRI 01: ", err.Error())
 		return

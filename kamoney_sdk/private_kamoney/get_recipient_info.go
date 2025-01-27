@@ -10,8 +10,8 @@ import (
 	"github.com/kamoney/sdk_golang/kamoney_sdk_dtos"
 )
 
-func (s *privateRequests) GetRecipientInfo(in kamoney_sdk_dtos.GetRecipientInfoRequestParams) (out kamoney_sdk_dtos.GetRecipientInfoRequestResponse, err error) {
-	req, err := s.r.RequestHandler("GET", ENDPOINT_ACCOUNT_RECIPIENTS_ID(in.ID), in)
+func (s *privateRequests) GetRecipientInfo(in kamoney_sdk_dtos.GetRecipientInfoRequestParams, id string) (out kamoney_sdk_dtos.GetRecipientInfoRequestResponse, err error) {
+	req, err := s.r.RequestHandler("GET", ENDPOINT_ACCOUNT_RECIPIENTS_ID(id), in)
 	if err != nil {
 		log.Panicln("CR 01: ", err.Error())
 		return

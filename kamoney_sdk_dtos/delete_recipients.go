@@ -1,8 +1,6 @@
 package kamoney_sdk_dtos
 
-type DeleteRecipientsRequestParams struct {
-	ID int64 `json:"id"`
-}
+type DeleteRecipientsRequestParams struct{}
 
 type DeleteRecipientsRequestResponse struct {
 	Common

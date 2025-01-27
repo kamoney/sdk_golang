@@ -11,7 +11,7 @@ import (
 	"github.com/kamoney/sdk_golang/utility"
 )
 
-func (s *privateRequests) ChangeRecipients(in kamoney_sdk_dtos.ChangeRecipientsRequestParams, id int64) (out kamoney_sdk_dtos.ChangeRecipientsRequestResponse, err error) {
+func (s *privateRequests) ChangeRecipients(in kamoney_sdk_dtos.ChangeRecipientsRequestParams, id string) (out kamoney_sdk_dtos.ChangeRecipientsRequestResponse, err error) {
 	in.Nonce = fmt.Sprint(utility.GenNonce())
 	req, err := s.r.RequestHandler("POST", ENDPOINT_ACCOUNT_RECIPIENTS_ID(id), in)
 	if err != nil {

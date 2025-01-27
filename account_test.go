@@ -12,10 +12,10 @@ func TestGetAccountInfo(t *testing.T) {
 	response, err := private.GetAccountInfo(kamoney_sdk_dtos.ChangeAccountInfoRequestParams{})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestChangeAccountInfo(t *testing.T) {
@@ -26,20 +26,20 @@ func TestChangeAccountInfo(t *testing.T) {
 	})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestGetAccountLocality(t *testing.T) {
 	response, err := private.GetAccountLocality(kamoney_sdk_dtos.GetAccountLocalityRequestParams{})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestChangeAccountLocality(t *testing.T) {
@@ -49,43 +49,43 @@ func TestChangeAccountLocality(t *testing.T) {
 		Number:       490,
 		Complement:   "201",
 		Neighborhood: "Palmeiras",
-		City:         3591,
+		City:         3592,
 		Nonce:        fmt.Sprint(utility.GenNonce()),
 	})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 /*Needs Bearer Token*/
 func TestChangeAccountContact(t *testing.T) {
 	response, err := private.ChangeAccountContact(kamoney_sdk_dtos.ChangeAccountContactRequestParams{
 		Whatsapp: "986621962",
-		Telegram: "@immortal",
+		Telegram: "@igorasf",
 	})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestGetAccountHistory(t *testing.T) {
 	response, err := private.GetAccountHistory(kamoney_sdk_dtos.GetAccountHistoryRequestParams{
 		Page:   1,
-		Search: "PTS",
+		Search: "#OKM92006666",
 		Date:   "",
 	})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 func TestGetAccountNotification(t *testing.T) {
 	response, err := private.GetAccountNotification(kamoney_sdk_dtos.GetAccountNotificationRequestParams{
@@ -93,122 +93,120 @@ func TestGetAccountNotification(t *testing.T) {
 	})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestUpdateAccountNotificationReadAll(t *testing.T) {
 	response, err := private.UpdateAccountNotificationReadAll(kamoney_sdk_dtos.UpdateAccountNotificationReadAllRequestParams{})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestUpdateAccountNotificationReadId(t *testing.T) {
-	response, err := private.UpdateAccountNotificationReadId(kamoney_sdk_dtos.UpdateAccountNotificationReadIdRequestParams{
-		ID: "2937",
-	})
+	response, err := private.UpdateAccountNotificationReadId(kamoney_sdk_dtos.UpdateAccountNotificationReadIdRequestParams{}, "2937")
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestGetAccountKyc(t *testing.T) {
 	response, err := private.GetAccountKyc(kamoney_sdk_dtos.GetAccountKycRequestParams{})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestGetServicesLimitsOrder(t *testing.T) {
 	response, err := private.GetServicesLimitsOrder(kamoney_sdk_dtos.GetServicesLimitsOrderRequestParams{})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestGetServicesLimitsMerchant(t *testing.T) {
 	response, err := private.GetServicesLimitsMerchant(kamoney_sdk_dtos.GetServicesLimitsMerchantRequestParams{})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestGetServicesLimitsBuy(t *testing.T) {
 	response, err := private.GetServicesLimitsBuy(kamoney_sdk_dtos.GetServicesLimitsBuyRequestParams{})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestGetAffiliateInfo(t *testing.T) {
 	response, err := private.GetAffiliateInfo(kamoney_sdk_dtos.GetAffiliateInfoRequestParams{})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestGetLevelInfo(t *testing.T) {
 	response, err := private.GetLevelInfo(kamoney_sdk_dtos.GetLevelInfoRequestParams{})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestGetFee(t *testing.T) {
 	response, err := private.GetFee(kamoney_sdk_dtos.GetFeeRequestParams{})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestGetReward(t *testing.T) {
 	response, err := private.GetReward(kamoney_sdk_dtos.GetRewardRequestParams{})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestListRecipients(t *testing.T) {
 	response, err := private.ListRecipients(kamoney_sdk_dtos.ListRecipientsRequestParams{})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestCreateRecipients(t *testing.T) {
@@ -221,25 +219,24 @@ func TestCreateRecipients(t *testing.T) {
 		Owner:         "Nome do Fulano",
 		PersonalID:    "08830121622",
 		Description:   "Test do SDK",
+		Nonce:         fmt.Sprint(utility.GenNonce()),
 	})
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestDeleteRecipients(t *testing.T) {
-	response, err := private.DeleteRecipients(kamoney_sdk_dtos.DeleteRecipientsRequestParams{
-		ID: 2910,
-	})
+	response, err := private.DeleteRecipients(kamoney_sdk_dtos.DeleteRecipientsRequestParams{}, "2911")
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestUpdateRecipients(t *testing.T) {
@@ -252,33 +249,22 @@ func TestUpdateRecipients(t *testing.T) {
 		Owner:         "João do Fulano",
 		PersonalID:    "05650090602",
 		Description:   "Test Update do SDK",
-	}, 2909)
+		Nonce:         fmt.Sprint(utility.GenNonce()),
+	}, "2912")
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
 
 func TestGetRecipientInfo(t *testing.T) {
-	response, err := private.GetRecipientInfo(kamoney_sdk_dtos.GetRecipientInfoRequestParams{
-		AccountType:    1,
-		Bank:           1,
-		Agency:         "0000",
-		AccountNumber:  "98765-0",
-		Owner:          "Claudeci Goularte",
-		PersonalID:     "05650090602",
-		Description:    "Novo cadastro.3 16-05-2022",
-		Main:           0,
-		DDD:            "31",
-		MobileOperator: "Claro",
-		PhoneNumber:    "982568095",
-	})
+	response, err := private.GetRecipientInfo(kamoney_sdk_dtos.GetRecipientInfoRequestParams{}, "2912")
 
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 
-	fmt.Println(response)
+	t.Log(response)
 }
