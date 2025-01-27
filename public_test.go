@@ -22,7 +22,7 @@ func TestMain(m *testing.M) {
 		log.Fatal(".env file is missing")
 	}
 
-	public = public_kamoney.NewPublicRequests(os.Getenv("EMAIL"), os.Getenv("PASS"), os.Getenv("PUBLIC_KEY"), os.Getenv("SECRET_KEY"))
+	public = public_kamoney.NewPublicRequests(os.Getenv("PUBLIC_KEY"))
 	private = private_kamoney.NewPrivateRequests(os.Getenv("EMAIL"), os.Getenv("PASS"), os.Getenv("PUBLIC_KEY"), os.Getenv("SECRET_KEY"))
 
 	code := m.Run()

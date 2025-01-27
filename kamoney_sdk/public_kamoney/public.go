@@ -61,24 +61,16 @@ type PublicRequestsInterface interface {
 }
 
 type publicRequests struct {
-	Email     string
-	Password  string
 	PublicKey string
-	SecretKey string
 	r         *RequestHandler
 }
 
-func NewPublicRequests(email, password, publicKey, secretKey string) PublicRequestsInterface {
+func NewPublicRequests(publicKey string) PublicRequestsInterface {
 	r := RequestHandler{
 		PublicKey: publicKey,
-		SecretKey: secretKey,
 	}
 
 	return &publicRequests{
-		Email:     email,
-		Password:  password,
-		PublicKey: publicKey,
-		SecretKey: secretKey,
-		r:         &r,
+		r: &r,
 	}
 }

@@ -16,7 +16,7 @@ import(
 
 
 func main() {
- public_ep := public.NewPublicRequests("email", "pass", "public", "secret")
+ public_ep := public.NewPublicRequests("public")
  response, err := public_ep.ServicesOrder()
  if err != nil {
   panic(err)
