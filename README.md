@@ -1,5 +1,10 @@
 # Kamoney API2 SDK
 
+
+```bash
+go get github.com/kamoney/sdk_golang@latest
+```
+
 How to import ?
 
 ```text
