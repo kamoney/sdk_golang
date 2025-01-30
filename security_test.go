@@ -69,7 +69,7 @@ package kamoney_sdk_test
 
 // func TestSecurityChangeAntiPhishing(t *testing.T) {
 // 	response, err := private.ChangeAntiPhishing(kamoney_sdk_dtos.ChangeAntiPhishingRequestParams{
-// 		Password: "7023346a",
+// 		Password: "*******",
 // 		Phrase:   "Abacaxi é fruta ?",
 // 	})
 
@@ -82,7 +82,7 @@ package kamoney_sdk_test
 
 // func TestSecurityViewAntiPhishing(t *testing.T) {
 // 	response, err := private.ViewAntiPhishing(kamoney_sdk_dtos.ViewAntiPhishingRequestParams{
-// 		Password: "7023346aA@",
+// 		Password: "*******A@",
 // 	})
 
 // 	if err != nil {
@@ -106,7 +106,7 @@ package kamoney_sdk_test
 // // Only through portal access
 // func TestSecurityCreateTfs(t *testing.T) {
 // 	response, err := private.CreateTfs(kamoney_sdk_dtos.CreateTfsRequestParams{
-// 		Password: "7023346a",
+// 		Password: "*******",
 // 	})
 
 // 	if err != nil {
@@ -118,7 +118,7 @@ package kamoney_sdk_test
 
 // func TestSecurityEmail(t *testing.T) {
 // 	response, err := private.ChangeEmail(kamoney_sdk_dtos.ChangeEmailRequestParams{
-// 		Password: "7023346a",
+// 		Password: "*******",
 // 		Email:    "immortal.g.tv@gmail.com",
 // 		Tfa:      "123456",
 // 	})
@@ -132,9 +132,9 @@ package kamoney_sdk_test
 
 // func TestSecurityChangePassword(t *testing.T) {
 // 	response, err := private.ChangePassword(kamoney_sdk_dtos.ChangePasswordRequestParams{
-// 		Password:        "7023346a",
-// 		PasswordNew:     "7023346aA@",
-// 		PasswordConfirm: "7023346aA@",
+// 		Password:        "*******",
+// 		PasswordNew:     "*******A@",
+// 		PasswordConfirm: "*******A@",
 // 	})
 
 // 	if err != nil {

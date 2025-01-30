@@ -100,7 +100,7 @@ func TestAccountRecoveryConfirm(t *testing.T) {
 	response, err := public.AccountRecoveryConfirm(kamoney_sdk_dtos.AccountRecoveryConfirmRequestParams{
 		Email:    "immortal.g.tv@gmail.com",
 		Code:     188636,
-		Password: "7023346aA@",
+		Password: "*****",
 	})
 	if err != nil {
 		t.Error(err)
